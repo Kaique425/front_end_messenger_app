@@ -1,0 +1,26 @@
+.image-popup-container{
+    box-shadow: 1px 1px 20px rgb(0 0 0 / 39%);
+    display: flex;
+    flex-direction: column;
+    padding: 2px;
+    color: rgb(255, 8, 8);
+    border-radius:5px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffffff;
+    z-index: 99;
+}
+.image-popup-container textarea{
+    padding: 10px;
+    width: 100%;
+}
+
+.popup-img{
+    border-radius:5px;
+    object-fit:fill;
+    max-width: 100%;
+    max-height: 30%;
+}

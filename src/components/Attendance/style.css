@@ -1,0 +1,44 @@
+.card-container{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.521); /* Fundo escuro com transparência */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    backdrop-filter: saturate(200%) blur(3px);
+}
+
+.reply-box{
+    background-color: #F0F2F5;
+    padding:5px;
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.filtered-reply-message{
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    border-radius:3px;
+    padding: 5px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.replayed-image{
+    box-sizing: border-box;
+    margin: auto;
+    border-radius: 3px;
+    padding: 5px;
+    max-height: 100px;
+    overflow: hidden;
+    cursor: pointer;
+    object-fit: cover;
+    width: 50%;
+    border-radius: 0px 10px 10px 0px;
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}

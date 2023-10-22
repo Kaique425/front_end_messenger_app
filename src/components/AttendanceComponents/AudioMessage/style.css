@@ -1,0 +1,46 @@
+.audio-input{
+    width: 20rem;
+
+    color: rgb(255, 255, 255);
+}
+
+#audio-player-container{
+    position: relative;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+    margin: 10px 0px 15px 5px;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 40px;
+    width: 15rem;
+    background-color: gray;
+}
+
+#audio-progress-bar{
+    height: 10px;
+    width: 50%;
+    background-color: white;
+}
+
+#currentTime{
+    font-size: 12px;
+    color: white;
+    font-weight: bold;
+}
+#duration{
+    font-size: 12px;
+    color: white;
+    font-weight: bold;
+}
+
+#playButton{
+
+}
+
+.audio-date{
+    font-size: 10px;
+    position: absolute;
+    bottom: -15px;
+    left: 10px;
+}

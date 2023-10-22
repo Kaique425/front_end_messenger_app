@@ -1,0 +1,15 @@
+
+.image-message{
+    width: 100%;
+    border-radius: 3px;
+}
+
+.caption-container{
+    display: flex;
+    align-items: flex-end;
+    align-content: space-around;
+    justify-content: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    position: relative;
+}

@@ -1,0 +1,47 @@
+.card-header {
+    border-radius: 5px;
+    background-color: #F0F2F5;
+    color: black;
+    display: flex;
+    font-size: 15px;
+    display:flex;
+    flex-direction: column;
+}
+
+.contact-info {
+    padding: 5px;
+    display: flex;
+    flex-grow: 1; /* Permite que a div ocupe todo o espaço disponível */
+    align-items: center;
+}
+
+.contact-details {
+    flex-grow: 1; /* Permite que essa div ocupe todo o espaço disponível na div pai */
+}
+
+.send-hsm-button {
+    margin: 5px;
+    background-color: black;
+    border-radius: 10px;
+    border: none;
+    height: 80%;
+}
+
+.attendance-closeIcon {
+    height: 25px;
+}
+.attendance-change-options{
+    display: flex;
+    justify-content: space-around;
+    padding: 10px; 
+}
+
+.read-mode-info{
+    padding: 10px;
+    color: red;
+    font-weight: bold;
+}
+.read-mode-description{
+    padding: 10px;
+    font-size: 12px;
+  }
