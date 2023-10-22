@@ -1,0 +1,77 @@
+.send-hsm-container{
+    padding: 5px;
+    color: black;
+    border-radius:10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80%;
+    height: fit-content;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.959);
+    z-index: 99;
+    object-fit: fill;
+}
+
+.HSM-container{
+    padding: 10px;
+    border-radius:10px;
+    box-shadow: inset 1px 1px 10px #000000b3;
+    background-color: rgb(216, 216, 216);
+}
+.HSM-phone-input{
+    margin: 5px;
+}
+.HSM-select-input{
+    margin: 5px;
+    padding: 5px;
+    border-radius: 5px;
+}   
+
+.HSM-message{
+    box-shadow: -1px 2px 9px 0px #000000b3;
+    padding: 10px;
+    background-color: #DCF8C6;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+.HSM-header{
+    padding: 5px;
+    font-weight: bold;
+}
+.HSM-body{
+    padding: 5px;
+}
+.HSM-footer{
+    color: gray;
+    padding: 5px;
+}
+
+.HSM-buttons button{
+    background-color: white;
+    color: #52A5F5;
+    border: none;
+    box-shadow: -1px 2px 5px 0px #0000004d;
+    padding: 10px;
+    border-radius: 10px;
+    width: fit-content;
+    margin: 5px;
+    word-break: keep-all;
+}
+
+.HSM-variables-container{
+    padding: 10px;
+}
+
+.HSM-action-buttons{
+    display:flex;
+    justify-content:space-around;
+    margin: auto;
+    width: 30%;
+}
+
+.HSM-action-buttons button{
+    padding: 5px;
+    background-color: ;
+}

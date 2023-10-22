@@ -1,0 +1,16 @@
+.sticker-container{
+    position: relative;
+    padding: 10px;
+    width: 30%;
+    
+}
+.sticker-img{
+    border-radius: 3px;
+    width: 50%;
+}
+.sticker-date{
+    position: absolute;
+    bottom: 0px;
+    left: 10px;
+    font-size: 10px;
+}

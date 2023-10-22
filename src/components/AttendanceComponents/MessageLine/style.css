@@ -1,0 +1,61 @@
+.reply-message-button{
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    border-radius: 100%;
+    width: fit-content;
+    position:absolute;
+    right: 1px;
+    top: 1px;
+}
+
+.reply-svg{
+    fill: rgba(126, 126, 126, 0.582);
+}
+.reply-svg:hover{
+    fill: rgba(0, 0, 0, 0.582);
+    transform: scale(1.05);
+    transition: ease-in-out 100ms;
+}
+
+.reply-message{
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    margin: auto;
+    background-color: #b4dd94b2;
+    border-radius: 3px;
+    width: 100%;
+    padding: 5px;
+    max-height: 50px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.reply-message:hover{
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.sender-name{
+    font-size: 12px;
+}
+
+.replied-message{
+    text-overflow:ellipsis;
+}
+
+.replied-img{
+    object-fit: cover;
+    width: 50%;
+    border-radius: 0px 10px 10px 0px;
+}
+
+.message-date{
+    display: flex;
+    align-items: flex-end;
+    flex-direction: row;
+    position:absolute;
+    right: 5px;
+    bottom:-3px;
+    word-wrap: break-word;
+    font-size: 12px;
+  }

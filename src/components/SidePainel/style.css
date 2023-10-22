@@ -1,0 +1,32 @@
+.side-painel{
+    font-size: 15px;
+    background-color: black;
+    height: 100vh;
+    width: fit-content;
+}
+
+.side-painel ul {
+    padding: 10px;
+    list-style-type: none;
+}
+
+.side-painel li {
+    color: white;
+    padding: 5px;
+    text-decoration: none;
+}
+
+.side-painel li:hover {
+    border-radius: 5px;
+    background-color: rgb(83, 83, 83) ;
+    transition: ease-in-out all 50ms;
+}
+
+.side-painel a {
+    text-decoration: none;
+}
+
+.side-painel a:visited {
+    color: white;
+}
+

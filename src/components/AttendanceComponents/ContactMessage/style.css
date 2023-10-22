@@ -1,0 +1,42 @@
+.contact-container{
+    padding: 5px;
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+}
+
+.contact-item{
+    display: flex;
+    box-shadow: 1px 1px 3px gray;
+    border-radius: 5px;
+    padding: 5px;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    background-color: #c0ff8f4a;
+    align-items: center;
+}
+
+.contact-item:hover{
+    transform: scale(1.05);
+}
+.contact-name{
+
+}
+
+.contact-number{
+
+}
+
+.contact-add-button{
+    padding: 1px 5px 1px 5px;
+    border-radius: 50px;
+    outline: none;
+    border: none;
+    width: fit-content;
+    height: fit-content;
+    background-color: gray;
+}
+.contact-add-button:hover{
+    transform: scale(1.1);
+}
+

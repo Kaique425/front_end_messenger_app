@@ -1,0 +1,197 @@
+#root {
+  width: 100%;
+  margin: 0;
+  padding: 0px;
+  display: flex;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light dark;
+  color: rgb(99, 99, 99);
+  background-color: #888888;
+}
+
+select{
+  box-shadow: rgba(149, 157, 165, 0.322) 0px 8px 24px;
+  padding: 5px;
+  border: none;
+  outline: none;
+  border-radius: 3px;
+  color: black;
+  background-color: rgb(255, 255, 255);
+}
+
+body {
+  margin: 0;
+  padding: 0px;
+}
+
+/* Works on Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: blue orange;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: rgb(94, 94, 94);
+}
+
+*::-webkit-scrollbar-thumb {
+  
+  background-color: #202C33;
+  border-radius: 20px;
+  border: 3px solid #202C33;
+}
+
+.card{
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: white;
+  height: 90vh;
+  width: 60vw;
+  border-radius: 5px;
+  padding:0px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.959);
+  z-index: 99;
+}
+
+
+
+
+
+.messages-container{
+  position: relative;
+  height: 100%;
+  background-color: #E6E9ED;
+  overflow-y:scroll;
+  padding: 5px;
+}
+
+.messageLine{
+  transition: ease-in-out 1000ms;
+  margin: 0px;
+  padding:0px;
+  width: 100%;
+  display:flex;
+  box-sizing: border-box;
+}
+
+.customerMessageItem{
+  z-index: 100;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+  position: relative;
+  background-color: #dcf8c6;
+  border-radius:5px;
+  max-width: 35%;
+  padding: 2px;
+  margin: 5px;
+  margin-left: 15px;
+  align-items: flex-end;
+  flex-wrap: nowrap;
+}
+
+.operatorMessageItem{
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  position: relative;
+  background-color: #dcf8c6;
+  border-radius: 5px;
+  max-width: 35%;
+  padding: 2px;
+  margin: 5px;;
+  margin-right: 5px;
+}
+
+.customerSide{
+  justify-content: flex-start;
+}
+
+.operatorSide{
+  justify-content:flex-end;
+}
+
+
+.message-tick{
+  width: 50%;
+  height: 50%;
+}
+
+.message-date{
+  display: flex;
+  align-items: flex-end;
+  flex-direction: row;
+  position:absolute;
+  right: 5px;
+  bottom:-3px;
+  word-wrap: break-word;
+  font-size: 12px;
+}
+.message-infos{
+  float: left;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.check-icon{
+  padding-bottom: 5px;
+}
+.icon-ack{
+  color: #53bdeb;
+}
+
+.attendances-container{
+  display: flex;
+}
+
+.attendance-painel-container{
+  margin: 0px;
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: #F1F2F6;
+}
+
+.painel-header-container{
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+  background-color: rgb(235, 235, 235);
+  display: flex;
+  justify-content: space-around;
+}
+.attendance-painel-main{
+  width: 100%;
+}
+.sector{
+  background-color: white;
+  padding: 5px;
+  margin: 5px;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+/* .sector:hover{
+  transition: ease-in-out 150ms;
+  background-color: rgb(230, 230, 230);
+} */
+
+.selected-sector{
+  background-color: black;
+  color: white;
+}
+
+
