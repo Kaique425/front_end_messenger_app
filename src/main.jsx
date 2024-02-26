@@ -2,6 +2,7 @@ import React from 'react'
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client'
 import Chat from './chat'
+import Sectors from './Sectors'
 import './index.css'
 import { SidePainel } from "./components/SidePainel"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
@@ -12,6 +13,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <SidePainel/>
       <Routes>
         <Route path="/Chat" element={<Chat />}/>
+        <Route path="/Sector" element={<Sectors />}/>
       </Routes>
     </BrowserRouter>
   </StrictMode>

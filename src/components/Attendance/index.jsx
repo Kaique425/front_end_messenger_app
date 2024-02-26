@@ -87,71 +87,79 @@ export const AttendanceComponent = ({ sectors, AttendanceInfo, OnCloseAttendance
       
       useEffect(() => {
         setScrollToDown()
+        getAttendanceMessages()
+
         
-      getAttendanceMessages()
-      const phone_number = `waent_${AttendanceInfo.customer_phone_number}`
-      let url = `${WS_BASE_URL}/ws/socket-server/${phone_number}`
-      const ws = new WebSocket(url)
-      webSocket.current = ws
-  
-  
-      ws.onmessage = (event) => {
-        let data = JSON.parse(event.data)
-        
-        if(data.type === "chat"){
-  
-          let message_object = {}
+        const phone_number = `waent_${AttendanceInfo.customer_phone_number}`
+        let url = `${WS_BASE_URL}/ws/socket-server/${phone_number}`
+        const ws = new WebSocket(url)
+        webSocket.current = ws
     
-          const message = JSON.parse(data.message)
-          message_object = {
-            "id": message.id,
-            "body": message.body,
-            "status": message.status,
-            "send_by_operator": message.send_by_operator,
-            "created_at": message.created_at,
-            "type": message.type,
-            "contacts": message.contacts,
-            "context": message.context
-          }
-          if (message.type !== "text"){
-            message_object = {...message_object, "media_url":message.media_url}
-          }
-  
-          setMessages(prevState => ({...prevState, [message.id]:message_object,}))
-        }
-        if(data.type === "update_notification"){
-          const message = JSON.parse(data.message)
-  
-          const messageTobeUpdated = messages[message.id.toString()]
-  
-          if(messageTobeUpdated){
-            setMessages(prevState => ({...prevState, 
-              [message.id]:{
-              ...prevState[message.id],
-              "status": message.status
-            }
-          }))
-  
-          }else{
-            let message_object = {
+    
+        ws.onmessage = (event) => {
+          let data = JSON.parse(event.data)
+          
+          if(data.type === "chat"){
+    
+            let message_object = {}
+      
+            const message = JSON.parse(data.message)
+            message_object = {
               "id": message.id,
               "body": message.body,
               "status": message.status,
               "send_by_operator": message.send_by_operator,
               "created_at": message.created_at,
               "type": message.type,
-              "media_url":message.media_url,
-              "context":message.context
-            } 
+              "contacts": message.contacts,
+              "context": message.context
+            }
+            if (message.type !== "text"){
+              message_object = {...message_object, "media_url":message.media_url}
+            }
+    
             setMessages(prevState => ({...prevState, [message.id]:message_object,}))
           }
+          if(data.type === "update_notification"){
+            const message = JSON.parse(data.message)
+    
+            const messageTobeUpdated = messages[message.id.toString()]
+    
+            if(messageTobeUpdated){
+              setMessages(prevState => ({...prevState, 
+                [message.id]:{
+                ...prevState[message.id],
+                "status": message.status
+              }
+            }))
+    
+            }else{
+              let message_object = {
+                "id": message.id,
+                "body": message.body,
+                "status": message.status,
+                "send_by_operator": message.send_by_operator,
+                "created_at": message.created_at,
+                "type": message.type,
+                "media_url":message.media_url,
+                "context":message.context
+              } 
+              setMessages(prevState => ({...prevState, [message.id]:message_object,}))
+            }
+          }
+          console.log(JSON.stringify(messages))
         }
-        console.log(JSON.stringify(messages))
+
+
         
-        return () => {
-          webSocket.current.close()
+      return () => {
+        if (webSocket.current.readyState === WebSocket.OPEN) {
+          webSocket.current.close();
         }
-      }}
+        webSocket.current.onmessage = null;
+        webSocket.current.onclose = null;
+      };
+    }
   , [])
   
    

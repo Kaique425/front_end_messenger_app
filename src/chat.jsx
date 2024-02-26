@@ -51,8 +51,8 @@ function Chat() {
           <div className="painel-header-container" >
                 { sectors?.map( (sector) => (
                     sector.id === selectedSector.id?
-                      <div className="sector selected-sector" key={sector.id} >{sector.name}</div>:
-                      <div className="sector" onClick={() => setSelectedSector(sector)} key={sector.id} >{sector.name}</div>
+                      <div className="sector selected-sector" key={sector.id} ><strong>{sector.name}</strong></div>:
+                      <div className="sector" onClick={() => setSelectedSector(sector)} key={sector.id} ><strong>{sector.name}</strong></div>
                     
                 ))}
 
