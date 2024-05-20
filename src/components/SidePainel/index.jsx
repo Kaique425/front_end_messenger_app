@@ -9,7 +9,7 @@ export const SidePainel = () => {
                 <li><Link to="/Chat">Atendimentos</Link></li>
                 <li><Link to="/Sector">Setores</Link></li>
                 <li>Historico</li>
-                <li>Canais de Entrada</li>
+                <li><Link to="/Channels">Canais de Entrada</Link></li>
                 <li>Regras de negócio</li>
               </ul>
         </nav>

@@ -53,7 +53,7 @@ export const CardHeader = ({AttendanceInfo, handleAttendanceClose}) => {
 
                     }
                     {showHSMPopUp &&
-                        <SendHSMPopUp AttendanceInfo={AttendanceInfo} setShowHSMPopUp={setShowHSMPopUp} />
+                        <SendHSMPopUp AttendanceInfo={AttendanceInfo} setShowHSMPopUp={setShowHSMPopUp} isCreation={false} />
                     }
                     <div onClick={() => handleAttendanceClose()}>
                         <svg className="attendance-closeIcon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

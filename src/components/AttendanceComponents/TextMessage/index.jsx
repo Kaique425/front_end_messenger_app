@@ -15,7 +15,7 @@ export const TextMessage = ({date, textMessage, isCaption, context}) => {
 
             <div className="text-div-message">
                 <p className="message-text">{textMessage}</p>
-                <span className="text-space" ></span><span className="message-fitter" ></span>
+                
             </div>
 
         ):(

@@ -48,14 +48,6 @@ export const AttendanceComponent = ({ sectors, AttendanceInfo, OnCloseAttendance
           setMessages(prevState => ({...prevState, [messageData.id]:message_object,}))
         }else{
           await sendWhatsAppMessage(message, phone_number, contextMessageId)
-
-        
-  
-        webSocket.current.send(JSON.stringify({
-          "message": message,
-          "operator_id": 13,
-          "send_by_operator":true
-        }))
   
       }
       

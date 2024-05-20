@@ -5,7 +5,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 80%;
+    width: 50%;
     height: fit-content;
     transform: translate(-50%, -50%);
     background-color: rgba(255, 255, 255, 0.959);
@@ -14,19 +14,37 @@
 }
 
 .HSM-container{
+    margin: 10px;
     padding: 10px;
     border-radius:10px;
     box-shadow: inset 1px 1px 10px #000000b3;
     background-color: rgb(216, 216, 216);
 }
 .HSM-phone-input{
+    width: fit-content;
+    margin: auto;
+}
+.HSM-phone-input label{
     margin: 5px;
 }
-.HSM-select-input{
+
+.HSM-phone-input input{
     margin: 5px;
+    color: black;
+    margin: auto;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: white;
+    border: none;
+    box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+}
+.HSM-select-input{
+    margin: 10px auto;
+    width: fit-content;
     padding: 5px;
     border-radius: 5px;
 }   
+
 
 .HSM-message{
     box-shadow: -1px 2px 9px 0px #000000b3;

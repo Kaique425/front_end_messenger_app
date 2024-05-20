@@ -9,14 +9,21 @@ export const AttendanceItem = ({attendanceItem, openAttandance}) => {
 
                 </svg>
                 <div>
-                    <div>Name: {attendanceItem.customer_name} </div>
-                    <div>Contact:{attendanceItem.customer_phone_number}</div>
+                    <div><strong>{attendanceItem.customer_name}</strong></div>
+                    <div>{attendanceItem.customer_phone_number}</div>
+                    { attendanceItem.unread_messages_quantity !== 0 &&
+                        <span className="unread-message-quantity" >{attendanceItem.unread_messages_quantity}</span>
+                     }
                 </div>
             </div>
             <div className="attendance-metrics-container">
                 <div className="metric-item" >TME:</div>
                 <div className="metric-item" >TMO:</div>
             </div>
+            { attendanceItem.last_message_was_sent_by_operator ? 
+                <div className="attendance-state read-messages" ></div>:
+                <div className="attendance-state unread-messages" ></div>
+            }
         </div>
     )
 }

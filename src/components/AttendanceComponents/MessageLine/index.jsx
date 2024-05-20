@@ -9,12 +9,14 @@ import { ImageMessage } from "../ImageMessage/index.jsx"
 import { TextMessage } from "../TextMessage/index.jsx"
 import { VideoMessage } from "../VideoMessage";
 import { ContactMessage } from "../ContactMessage";
+import {dateFormater} from "../../../../modules/dateFormater"
 
 import { useEffect } from "react";
 import { StickerMessage } from "../StickerMessage";
 export const MessageLine = ({message, context, setContext}) => {
     console.log(`${JSON.stringify(message.type)} ${context}`)
-    const formatedDate = new Date(message.created_at).toLocaleString([], {hour: 'numeric', minute:'numeric', second:"numeric"})
+    // const formatedDate = new Date(message.created_at).toLocaleString([], {hour: 'numeric', minute:'numeric', second:"numeric"})
+    const formatedDate = dateFormater(message.created_at)
     useEffect(() =>{
     }, [message])
     return (

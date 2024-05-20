@@ -1,2 +1,4 @@
-export const BASE_URL = "https://e61d-177-152-147-246.ngrok-free.app"
-export const WS_BASE_URL = "wss://e61d-177-152-147-246.ngrok-free.app"
+const URL_PREFIX = "//4ead-177-152-151-78.ngrok-free.app"
+
+export const BASE_URL = `https:${URL_PREFIX}`
+export const WS_BASE_URL = `wss:${URL_PREFIX}`

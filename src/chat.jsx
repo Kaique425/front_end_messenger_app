@@ -57,7 +57,7 @@ function Chat() {
                 ))}
 
                 <button className="send-hsm-button" onClick={() => setShowHSMModal(true)} >Send HSM</button>
-                {showHSMModal && <SendHSMPopUp AttendanceInfo={{customer_phone_number:"5518996696477"}} setShowHSMPopUp={setShowHSMModal} />}
+                {showHSMModal && <SendHSMPopUp setShowHSMPopUp={setShowHSMModal}  isCreation={true}/>}
           </div>
           <div className="attendance-painel">
               <div>

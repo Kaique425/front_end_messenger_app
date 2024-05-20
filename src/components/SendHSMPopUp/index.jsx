@@ -2,43 +2,53 @@ import "./style.css"
 import { useState, useEffect } from "react"
 import { sendWhatsAppHSMMessage } from "../../whatsapp_functions"
 import { BASE_URL } from "../../constants"
-
-export const SendHSMPopUp = ({setShowHSMPopUp, AttendanceInfo}) => {
+import { insertMaskInPhone } from "../../../modules/phoneMask"
+export const SendHSMPopUp = ({setShowHSMPopUp, AttendanceInfo, isCreation}) => {
     const [availableHSM, setAvailableHSM]  = useState([])
+    const [phoneNumber, setPhoneNumber] = useState()
+    const [phoneDDD, setPhoneDDD] = useState()
     const [currentHSMSelected, setCurrentHSMSelected] = useState({})
     const [valuesToBeReplaced, setvaluesToBeReplaced] = useState([])
     const [updatedHSM, setUpdatedHSM ] = useState({})
     const [hsmVariables, setHsmVariables] = useState({})
+    const [isLoading, setIsLoading] = useState(true)
 
+    const handlePhoneChange = (e) => {
+        const inputPhone = e.target.value
+        const resultedPhones = insertMaskInPhone(inputPhone)
+        setPhoneNumber(resultedPhones.unmaskedPhone)
+        e.target.value = resultedPhones.maskedPhone
+    }
 
     const getHSM = async () => {
         let response = await fetch(`${BASE_URL}/hsms`)
         let data = await response.json()
-        console.log(`CARREGOU ${JSON.stringify(data)}`)
         setAvailableHSM(data)
-        console.log(`ANTES DE SELECIOANR ${JSON.stringify(currentHSMSelected)}`)
         setCurrentHSMSelected(data[0])
         setUpdatedHSM(data[0])
+        setIsLoading(false)
     }
 
     const handleHSMSelection = (e) => {
         let currentHSMId = parseInt(e.target.value)
-        console.log(`SELECIONOU ${e.target.value} `)
         const filteredHSM = availableHSM.filter( HSMItem => parseInt(HSMItem.id) === currentHSMId)
-        console.log(`FILTRADO ${filteredHSM[0].id}`)
         setUpdatedHSM(filteredHSM[0])
         setCurrentHSMSelected(filteredHSM[0])
     }
 
     const handleHSMSendMessage = async () => {
-        console.log(`ATTENDANCE INFO!!!!!! ---> ${JSON.stringify(AttendanceInfo)}`)
-        sendWhatsAppHSMMessage(AttendanceInfo.customer_phone_number, "iniciar_contato_com_o_cliente", hsmVariables, currentHSMSelected.language_code )
+        if (AttendanceInfo){
+            sendWhatsAppHSMMessage(AttendanceInfo.customer_phone_number, currentHSMSelected.name, hsmVariables, currentHSMSelected.language_code )
+        }else {
+            const complete_customer_phone = phoneDDD + phoneNumber
+            sendWhatsAppHSMMessage(complete_customer_phone, currentHSMSelected.name, hsmVariables, currentHSMSelected.language_code )
+        }
+
         setShowHSMPopUp(false)
     }
 
 
     const handleHSMVariablesReplaces = (valuesTobeReplaced) => {
-        console.log(`HSM VARIABLES ${JSON.stringify(hsmVariables)}`)
         let updatedHSM = {
             "header":currentHSMSelected.header,
             "body": currentHSMSelected.body,
@@ -49,7 +59,6 @@ export const SendHSMPopUp = ({setShowHSMPopUp, AttendanceInfo}) => {
                 if(Array.isArray(valuesTobeReplaced[key])){
                     valuesTobeReplaced[key].forEach((value, i) => {
                         if (hsmVariables[key] && hsmVariables[key][i]) {
-                            console.log(`{{${i + 1}}}  --> ${updatedHSM[key]}`);
                             updatedHSM[key] = updatedHSM[key].replace(`{{${i + 1}}}`, hsmVariables[key][i]);
                             setUpdatedHSM({ ...currentHSMSelected, ...updatedHSM });
                         }
@@ -68,9 +77,8 @@ export const SendHSMPopUp = ({setShowHSMPopUp, AttendanceInfo}) => {
 
     useEffect(() => {
         const pattern = /\{\{[^\}]+\}\}/g;
-        console.log("HEADER MESSAGE" + (currentHSMSelected.header ? currentHSMSelected.header : ""));
-        let headerMatches = (currentHSMSelected.header || "").match(pattern) || [];
-        let bodyMatches = (currentHSMSelected.body || "").match(pattern) || [];
+        let headerMatches = (currentHSMSelected?.header || "").match(pattern) || [];
+        let bodyMatches = (currentHSMSelected?.body || "").match(pattern) || [];
         let headerCounter = headerMatches.length;
         let bodyCounter = bodyMatches.length;
 
@@ -91,67 +99,78 @@ export const SendHSMPopUp = ({setShowHSMPopUp, AttendanceInfo}) => {
     useEffect( () => {
         handleHSMVariablesReplaces(valuesToBeReplaced)
     }, [hsmVariables])
-    return(
-        <div className="send-hsm-container" >
-            {
-                availableHSM.length === 0?(
-                    <div>
-                        loading...
-                    </div>
-                ):(
-                    <div>
-                    <div className="HSM-phone-input">
-                <label htmlFor="phone_number_input">Phone Number</label>
-                <input type="text" id="phone_number_input"/>
+    
+    return (
+    <div className="send-hsm-container">
+        {isLoading ? (
+            <div>
+                loading...
             </div>
-            <select className="HSM-select-input" onChange={(e) => handleHSMSelection(e)} name="" id="">
-                {availableHSM &&
-                    availableHSM?.map(HSMItem => (
-                        <option key={HSMItem.id} value={HSMItem.id} >{HSMItem.name}</option>
-                    ))
-
+        ) : (
+            <div>
+                {isCreation && 
+                    <div>
+                        <div className="HSM-phone-input">
+                            <label >DDD:</label>
+                            <input required={true} maxLength={2} onChange={ (e) => setPhoneDDD(e.target.value)} type="number" />
+                        </div>
+                        <div className="HSM-phone-input">
+                            <label htmlFor="phone_number_input">Número do contato:</label>
+                            <input required={true} maxLength={15} onChange={ (e) => handlePhoneChange(e)} type="text" id="phone_number_input" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" />
+                        </div>
+                    </div>
                 }
+                <select className="HSM-select-input" onChange={(e) => handleHSMSelection(e)} name="" id="">
+                    <option value="Selecione um Modelo.">Selecione um Modelo.</option>
+                    {availableHSM &&
+                        availableHSM?.map(HSMItem => (
+                            <option key={HSMItem.id} value={HSMItem.id}>{HSMItem.name}</option>
+                        ))
+                    }
+                </select>
 
-            </select>
-                <div className="HSM-container" >
-                        <div className="HSM-message" > 
-                            <div className="HSM-header" >{updatedHSM.header}</div>
-                            <div className="HSM-body">{updatedHSM.body}</div>
-                            <div className="HSM-footer" >{currentHSMSelected.footer}</div>
-                            <div className="HSM-buttons">
-                            {currentHSMSelected.buttons?.map(buttonItem => (
-                            <button>{buttonItem.body}</button>
-                            ))}
+                {currentHSMSelected ? (
+                    <div>
+                        <div className="HSM-container">
+                            <div className="HSM-message">
+                                <div className="HSM-header">{updatedHSM?.header}</div>
+                                <div className="HSM-body">{updatedHSM?.body}</div>
+                                <div className="HSM-footer">{currentHSMSelected?.footer}</div>
+                                <div className="HSM-buttons">
+                                    {currentHSMSelected?.buttons?.map(buttonItem => (
+                                        <button key={buttonItem.id} >{buttonItem.body}</button>
+                                    ))}
+                                </div>
                             </div>
                         </div>
-                </div>
-                <div className="HSM-variables-container">
-                    {valuesToBeReplaced.header?.length > 0?(
-                        <div className="varible-header-itens">
-                            <div>Header Variables:</div>
-                            {valuesToBeReplaced.header.map((value, index) => (
-                            <input key={index} onChange={(event) => handlePatternReplace(event, index,"header")} />
-                            )) }
+                        <div className="HSM-variables-container">
+                            {valuesToBeReplaced.header?.length > 0 ? (
+                                <div className="varible-header-itens">
+                                    <div>Variveis do Cabeçalho:</div>
+                                    {valuesToBeReplaced.header.map((value, index) => (
+                                        <input key={index} onChange={(event) => handlePatternReplace(event, index, "header")} />
+                                    ))}
+                                </div>
+                            ) : ""}
+                            {valuesToBeReplaced.body?.length > 0 ? (
+                                <div className="varible-body-itens">
+                                    <div>Variaveis do corpo da mensagem:</div>
+                                    {valuesToBeReplaced.body.map((value, index) => (
+                                        <input key={index} onChange={(event) => handlePatternReplace(event, index, "body")} />
+                                    ))}
+                                </div>
+                            ) : ""}
                         </div>
-                    ): ""
-                    }
-                    {valuesToBeReplaced.body?.length > 0?(
-                        <div className="varible-body-itens">
-                            <div>Body Variables:</div>
-                            {valuesToBeReplaced.body.map((value, index) => (
-                            <input key={index} onChange={(event) => handlePatternReplace(event, index,"body")} />
-                            )) }
+                        <div className="HSM-action-buttons">
+                            <button type="submit" onClick={() => handleHSMSendMessage()}>Send</button>
+                            <button onClick={() => setShowHSMPopUp(false)}>Close</button>
                         </div>
-                    ): ""
-                    }
-                </div>
-             <div className="HSM-action-buttons">
-                <button onClick={() => handleHSMSendMessage()} >Send</button>
-                <button onClick={() => setShowHSMPopUp(false)} >Close</button>
-             </div>
                     </div>
-                )
-            }
-        </div>
-    )
+                ) : (
+                    <div>Não foi selecionado nenhum modelo</div>
+                )}
+            </div>
+        )}
+    </div>
+)
 }

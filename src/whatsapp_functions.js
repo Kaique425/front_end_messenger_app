@@ -52,7 +52,7 @@ export const sendWhatsAppHSMMessage = async (phone_number, hsm_name, components,
             ]
           })
       })
-      console.log(`MOUNTED --> ${JSON.stringify(mountedComponents)}`)
+      console.log(`MOUNTED --> ${hsm_name} === ${code}`)
       const response = await fetch(`${BASE_URL}/messages/hsm`, {
                   method: "POST",
                   headers: {
