@@ -18,7 +18,7 @@ export const ImagePopUp = ({file, showPopUpImage, setMessage, handleSendMessages
     return (
         <div className="image-popup-container">
             <img className="popup-img" ref={imgElement} alt="" />
-            <textarea placeholder="Type your message here." onKeyDown={(event) => handleSendMessages(event)} onChange={(e) => setMessage(e.target.value) } type="text" name="message"/>
+            <textarea placeholder="Escreva uma mensagem."  onKeyDown={(event) => handleSendMessages(event)} onChange={(e) => setMessage(e.target.value) } type="text" name="message"/>
         </div>
     )
 }

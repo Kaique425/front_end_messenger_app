@@ -2,6 +2,10 @@ import "./style.css"
 import { useState } from "react"
 import { SendHSMPopUp } from "../../SendHSMPopUp"
 import { useGlobalContext } from "../../../Contexts/GlobalContext"
+import { BASE_URL } from "../../../data/constants"
+import { WhatsAppIcon } from "../Icons/WhatsAppIcon"
+import { CloseWindowIcon } from "../Icons/CloseWindowIcon"
+import { SendActiveIcon } from "../Icons/SendActiveIcon"
 
 export const CardHeader = ({AttendanceInfo, handleAttendanceClose}) => {
     const sectors = useGlobalContext()
@@ -13,10 +17,21 @@ export const CardHeader = ({AttendanceInfo, handleAttendanceClose}) => {
         return console.log(e.target.value)
     }
 
+    const handleFinishAttendance = async (attendanceId) => {
+        const response = await fetch(`${BASE_URL}/attendances/${attendanceId}/finish/`, { method: "PATCH",})
+
+        if(response.status === 200){
+            console.log(response.status)
+            handleAttendanceClose()
+        }else{
+            console.log(response.status)
+        }
+    }
+
     const handleSectorUpdate = async (e) => {
 
         const sectorId = e.target.value
-        const response = await fetch(`http://localhost:8000/attendances/${AttendanceInfo.id}`, {
+        const response = await fetch(`${BASE_URL}/attendances/${AttendanceInfo.id}/`, {
             method: "PATCH",
             headers:{
                 "Content-Type": "application/json",
@@ -41,45 +56,57 @@ export const CardHeader = ({AttendanceInfo, handleAttendanceClose}) => {
     return (
             <div className="card-header">
                 <div className="contact-info">
+                    <WhatsAppIcon/>
                     <div className="contact-details">
-                        <div>Número do contato: {AttendanceInfo.customer_phone_number}</div>
-                        <div>Nome: {AttendanceInfo.customer_name}</div>
+                        <div><strong>Nome:</strong> {AttendanceInfo.customer_name}</div>
+                        <div><strong>Contato:</strong> {AttendanceInfo.customer_phone_number}</div>
                     </div>
                     {attendanceWasChanged?(
                         <div className="read-mode-info">Modo de somente Leitura ativo!</div>
                     ):
-                    <button className="send-hsm-button" onClick={() => setShowHSMPopUp(true)}>Send HSM</button>
-
+                    <div className="action-buttons-container">
+                        <button className="send-hsm-button" onClick={() => setShowHSMPopUp(true)}>
+                        Enviar Modelo
+                        <SendActiveIcon/>
+                        </button>
+                        <button className="finish-attendance-button" onClick={() => handleFinishAttendance(AttendanceInfo.id)}>Finalizar</button>
+                    </div>
 
                     }
                     {showHSMPopUp &&
                         <SendHSMPopUp AttendanceInfo={AttendanceInfo} setShowHSMPopUp={setShowHSMPopUp} isCreation={false} />
                     }
-                    <div onClick={() => handleAttendanceClose()}>
-                        <svg className="attendance-closeIcon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="m12.002 2.005c5.518 0 9.998 4.48 9.998 9.997 0 5.518-4.48 9.998-9.998 9.998-5.517 0-9.997-4.48-9.997-9.998 0-5.517 4.48-9.997 9.997-9.997zm0 1.5c-4.69 0-8.497 3.807-8.497 8.497s3.807 8.498 8.497 8.498 8.498-3.808 8.498-8.498-3.808-8.497-8.498-8.497zm0 7.425 2.717-2.718c.146-.146.339-.219.531-.219.404 0 .75.325.75.75 0 .193-.073.384-.219.531l-2.717 2.717 2.727 2.728c.147.147.22.339.22.531 0 .427-.349.75-.75.75-.192 0-.384-.073-.53-.219l-2.729-2.728-2.728 2.728c-.146.146-.338.219-.53.219-.401 0-.751-.323-.751-.75 0-.192.073-.384.22-.531l2.728-2.728-2.722-2.722c-.146-.147-.219-.338-.219-.531 0-.425.346-.749.75-.749.192 0 .385.073.531.219z"/>
-                        </svg>
+                    <div className="close-window-button" onClick={() => handleAttendanceClose()}>
+                        <CloseWindowIcon/>
                     </div>
                 </div>
                 {attendanceWasChanged?(
                     <div className="read-mode-description" >O responsável ou o setor foram alterados assim ativando o modo de somente leitura. (<strong>Caso deseje interagir é somente abrir novamente o atendimento</strong>)</div>
                 ):
-                <div className="attendance-change-options" >
-                    <select name="" id="">
-                        <option value="">Selecione um status</option>
-                    </select>
-                    <select name="" id="">
-                        <option value="">Selecione um responsável</option>
-                    </select>
-                    <select name="" id="" value={AttendanceInfo.sector} onChange={(e) => handleSectorUpdate(e)}>
-                        {sectors.map(sector => (
-                        
-                            <option key={sector.id}  value={sector.id} >{sector.name}</option>
+                <div className="attendance-change-options-container" >
+                    <div className="selection-items" >
+                        <label htmlFor="classification-status">Status de Classificação:</label>
+                        <select name="" id="classification-status">
+                            <option value="">Selecione um status</option>
+                        </select>
+                    </div>
+                    <div className="selection-items" >
+                        <label htmlFor="responsible-transference">Selecione um responsável:</label>
+                        <select name="" id="responsible-transference">
+                            <option value="">Selecione um responsável</option>
+                        </select>
+                    </div>
+                    <div className="selection-items" >
+                        <label htmlFor="sector-transference">Selecione um setor:</label>
+                        <select name="" id="sector-transference" value={AttendanceInfo.sector} onChange={(e) => handleSectorUpdate(e)}>
+                            {sectors.map(sector => (
+                            
+                                <option key={sector.id}  value={sector.id} >{sector.name}</option>
 
-                        ))}
-                    </select>
+                            ))}
+                        </select>
+                    </div>
                 </div>
-                
                 }
             </div>
     )

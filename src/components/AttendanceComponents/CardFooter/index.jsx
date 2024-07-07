@@ -1,21 +1,57 @@
 import "./style.css"
 import { useRef, useState, useEffect } from "react"
 import { ImagePopUp } from "../ImagePopUp"
+import { MicrofoneIcon } from "../Icons/MicrofoneIcon"
+import { ImageSenderIcon } from "../Icons/ImageSenderIcon"
 export const CardFooter = ({setContextMessageId, sendMessage }) => {
     const [showPopUpImage, setShowPopUpImage] = useState(false)
-    let imageElement = useRef(null)
-    let inputField = useRef(null)
-    const textAreainput = useRef(null)
-    const [selectedFile, setSelectedFile] = useState(null)
+    const [height, setHeight] = useState(100)
+    const [previousHeight, setPreviousHeight]  = useState()
     const [message, setMessage] = useState("")
+    
+    const initialHeightRef = useRef(height)
+    let inputField = useRef(null)
+    let footerContainerRef = useRef(null)
+    const textAreaRef = useRef(null)
+
+    const [selectedFile, setSelectedFile] = useState(null)
+
+
     const handleFileChange = () => {
         setShowPopUpImage(true)
         setSelectedFile(inputField.current.files[0])
     }
 
-    const handleSendMessages = (event) => {
+    const handleHeightIncreaseOnDrag = (e) => {
+        e.preventDefault();
 
-        if (event.key === "Enter") {
+        const startY = e.clientY;
+        const initialHeight = footerContainerRef.current.offsetHeight;
+        initialHeightRef.current = initialHeight;
+
+        const onMouseMove = (e) => {
+            const deltaY = startY - e.clientY;
+            const newHeight = initialHeight + deltaY;
+            if (newHeight > 50) {
+                setHeight(newHeight);
+                footerContainerRef.current.style.height = `${newHeight}px`;
+            }
+        };
+
+        const onMouseUp = () => {
+            document.removeEventListener("mousemove", onMouseMove);
+            document.removeEventListener("mouseup", onMouseUp);
+        };
+
+        document.addEventListener("mousemove", onMouseMove);
+        document.addEventListener("mouseup", onMouseUp);
+    };
+    
+
+    const handleKeyDownEvents = (event) => {
+
+        if (event.key === "Enter" && !event.shiftKey){
+            console.log(event.key)
             setContextMessageId(null)
             event.preventDefault()
             sendMessage(selectedFile, message)
@@ -23,35 +59,55 @@ export const CardFooter = ({setContextMessageId, sendMessage }) => {
             setShowPopUpImage(false)
             inputField.current.value = ""
             event.target.value = ""
-            textAreainput.current.value = ""
+            textAreaRef.current.value = ""
         }
+
+        if(event.ctrlKey && event.key === "b"){
+            event.preventDefault()
+            const start = textAreaRef.current.selectionStart
+            const end = textAreaRef.current.selectionEnd
+            const fullText = textAreaRef.current.value
+
+            const selectedText = fullText.substring(start, end)
+
+            const newFormattedText = `${fullText.substring(0, start)}*${selectedText}*${fullText.substring(end)}`
+            setMessage(newFormattedText)
+            textAreaRef.current.value = newFormattedText
+            console.log(`${start} X ${end} Text ${selectedText}`)
+    }
     }
 
     useEffect(() => {
-        if (showPopUpImage) {
-            console.log(selectedFile)
-        }
-
-    }, [showPopUpImage])
+        footerContainerRef.current.style.height = `${height}px`;
+    }, [height]);
 
 
     return (
-        <div id="footer-container" className="footer-container">
-                <div className="interactions-footer-container" >
-                        {showPopUpImage &&
-                            <ImagePopUp handleSendMessages={handleSendMessages} file={selectedFile} showPopUpImage={showPopUpImage} setMessage={setMessage} />
-                        }
-                        <label className="img-sender-input" htmlFor="sender_input">
-                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none" /><path d="M18 20H4V6h9V4H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-9h-2v9zm-7.79-3.17l-1.96-2.36L5.5 18h11l-3.54-4.71zM20 4V1h-2v3h-3c.01.01 0 2 0 2h3v2.99c.01.01 2 0 2 0V6h3V4h-3z" /></svg>
-                            <input className="img-sender-input" accept=".jpg, .jpeg, .png" ref={inputField} id="sender_input" type="File" onChange={handleFileChange} />
-                        </label>
-                        <textarea id="textarea-message-input" className="textarea-message" 
-                        ref={textAreainput} 
-                        placeholder="Type your message here." 
-                        onKeyDown={(event) => handleSendMessages(event)} 
-                        onChange={(e) => setMessage(e.target.value)} 
-                        type="text" name="message" />
-                        <button onKeyDown={(event) => sendMessage(event, selectedFile)} >Send Message</button>
+        <div id="footer-container" className="footer-container" style={{ height: `${height}px` }} ref={footerContainerRef}>
+                <div className="interaction-resize-container">
+                    <div className="expand-input-arrow"  onMouseDown={ (e) => handleHeightIncreaseOnDrag(e)} ></div>
+                    <div className="interactions-footer-container" >
+                            {showPopUpImage &&
+                                <ImagePopUp handleSendMessages={handleKeyDownEvents} file={selectedFile} showPopUpImage={showPopUpImage} setMessage={setMessage} />
+                            }
+                            <label className="img-sender-input" htmlFor="sender_input">
+                                <ImageSenderIcon/>
+                                <input className="img-sender-input" accept=".jpg, .jpeg, .png" ref={inputField} id="sender_input" type="File" onChange={handleFileChange} />
+                            </label>
+
+                            <textarea id="textarea-message-input" className="textarea-message" 
+                            ref={textAreaRef} 
+                            placeholder="Escreva uma mensagem." 
+                            onKeyDown={(event) => handleKeyDownEvents(event)} 
+                            onChange={(e) => setMessage(e.target.value)} 
+                            type="text" 
+                            name="message" 
+                            maxLength="4096"
+                            />
+                            <div className="microfone-input">
+                                <MicrofoneIcon/>
+                            </div>
+                    </div>
                 </div>
         </div>
     )

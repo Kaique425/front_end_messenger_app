@@ -1,15 +1,15 @@
 import React from 'react'
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client'
-import Chat from './chat'
-import Sectors from './Sectors'
-import Channels from "../channels"
+import Chat from './pages/chat/Chat'
+import Sectors from './pages/sectors/Sectors'
+import Channels from "./pages/channels/channels.jsx"
 import './index.css'
 import { SidePainel } from "./components/SidePainel"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <StrictMode>
+  // <StrictMode>
     <BrowserRouter>
       <SidePainel/>
       <Routes>
@@ -18,5 +18,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/Channels" element={<Channels />}/>
       </Routes>
     </BrowserRouter>
-  </StrictMode>
+  // </StrictMode>
 )

@@ -9,12 +9,12 @@ import { ImageMessage } from "../ImageMessage/index.jsx"
 import { TextMessage } from "../TextMessage/index.jsx"
 import { VideoMessage } from "../VideoMessage";
 import { ContactMessage } from "../ContactMessage";
-import {dateFormater} from "../../../../modules/dateFormater"
+import {dateFormater} from "../../../utils/dateFormater.js"
 
 import { useEffect } from "react";
 import { StickerMessage } from "../StickerMessage";
-export const MessageLine = ({message, context, setContext}) => {
-    console.log(`${JSON.stringify(message.type)} ${context}`)
+import { FailedCheck } from "../Icons/Failed.jsx";
+export const MessageLine = ({message, context, setContext, AttendanceInfo}) => {
     // const formatedDate = new Date(message.created_at).toLocaleString([], {hour: 'numeric', minute:'numeric', second:"numeric"})
     const formatedDate = dateFormater(message.created_at)
     useEffect(() =>{
@@ -53,29 +53,38 @@ export const MessageLine = ({message, context, setContext}) => {
                                             <SentCheck/>
                                         ):message.status === "delivered"?(
                                             <SendedCheck/>
-                                        ):(
+                                        ): message.status === "read"?(
                                             <SeenCheck/>
+                                        ):(
+                                            <FailedCheck/>
                                         )
                                     }
                             </div>
                         </div>
                     </div>
                 </div>:
-            <div className="messageLine customerSide">
+            <div className="messageLine customerSide ">
+            
                     { message.type === "audio"?(
-                        <AudioMessage date={formatedDate} audioSource={message.media_url} />
+                        <div className="media-container-without-background">
+                            <div className="customer-name-in-message" ><strong>{AttendanceInfo.customer_name}</strong></div>
+                            <AudioMessage date={formatedDate} audioSource={message.media_url} />
+                        </div>
                     ): message.type === "sticker"?(
-                        <StickerMessage date={formatedDate} imageSource={message.media_url} />
+                        <div className="media-container-without-background">
+                            <div className="customer-name-in-message" ><strong>{AttendanceInfo.customer_name}</strong></div>
+                            <StickerMessage date={formatedDate} imageSource={message.media_url} />
+                        </div>
                     ):
-                    <div className="operatorMessageItem" >
+                    <div className="customerMessageItem" >
+                        <div className="customer-name-in-message" ><strong>{AttendanceInfo.customer_name}</strong></div>
                         <button className="reply-message-button" onClick={() => setContext(message.id)} >
-                        <svg className="reply-svg" version="1.1" id="Capa_1"  xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="20px" height="20px" viewBox="0 0 27.361 27.361" xmlSpace="preserve">
-                            <g>
-                                <path d="M0,12.022l9.328-9.328v4.146h9.326c4.809,0,8.707,3.898,8.707,8.706v9.12c0-4.81-3.898-8.704-8.707-8.704H9.328v5.389
-                                    L0,12.022z"/>
-                            </g>
-                        </svg>
-
+                            <svg className="reply-svg" version="1.1" id="Capa_1"  xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="20px" height="20px" viewBox="0 0 27.361 27.361" xmlSpace="preserve">
+                                <g>
+                                    <path d="M0,12.022l9.328-9.328v4.146h9.326c4.809,0,8.707,3.898,8.707,8.706v9.12c0-4.81-3.898-8.704-8.707-8.704H9.328v5.389
+                                        L0,12.022z"/>
+                                </g>
+                            </svg>
                         </button>
                                 {context && 
                                     <div className="reply-message" >
@@ -102,7 +111,11 @@ export const MessageLine = ({message, context, setContext}) => {
                                 <ContactMessage date={formatedDate} contactMessage={message} />
                             )
                             }
-                            <div className="message-date">{formatedDate}</div>
+                            <div className="message-infos">
+                                <div className="message-date" >
+                                    <div>{formatedDate}</div>
+                                </div>
+                            </div>
                         </div>
                     
                     }

@@ -1,7 +1,7 @@
 import {useState, useEffect} from "react"
-import {dateFormater} from "./modules/dateFormater"
-import { BASE_URL } from "./src/constants"
-
+import {dateFormater} from "../../utils/dateFormater"
+import { BASE_URL } from "../../data/constants"
+import "./style.css"
 const Channels = () => {
     const [ channels, setChannels] = useState([])
 

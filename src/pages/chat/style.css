@@ -1,0 +1,131 @@
+.card{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: white;
+    height: 95vh;
+    width: 75vw;
+    border-radius: 5px;
+    padding:0px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.959);
+    z-index: 99;
+  }
+  
+  @media(max-width: 768px){
+    .card{
+      width: 100vw;
+      height: 95vh;
+      box-sizing: border-box;
+    }
+  }
+  
+  .messages-container{
+    position: relative;
+    height: 100%;
+    background-color: #F0EBE4;
+    overflow-y:scroll;
+    overflow-x: hidden;
+    padding: 5px;
+  }
+  
+  
+  .message-tick{
+    width: 50%;
+    height: 50%;
+  }
+  
+  
+  .check-icon{
+    padding-bottom: 2px;
+    padding-left:2px;
+  }
+  .icon-ack{
+    color: #53bdeb;
+  }
+  
+  .attendances-container{
+    padding: 10px;
+    background-color: white;
+    height: fit-content;
+    margin-left: 150px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    align-content: flex-start;
+  }
+  
+  .attendance-painel-container{
+    margin: 0px;
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: #F1F2F6;
+  }
+  
+  .painel-header-container{
+    margin-left: 150px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+    background-color: rgb(235, 235, 235);
+    display: flex;
+    justify-content: space-around;
+  }
+  .attendance-painel-main{
+    width: 100%;
+  }
+  .sector{
+    background-color: white;
+    padding: 10px;
+    margin: 5px;
+    text-align: center;
+    min-width: 100px;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  }
+  /* .sector:hover{
+    transition: ease-in-out 150ms;
+    background-color: rgb(230, 230, 230);
+  } */
+  
+  .selected-sector{
+    background-color: black;
+    color: white;
+  }
+  
+  .search-attendance-container{
+    padding: 10px;
+    width: 100%;
+    margin-left: 150px;
+  }
+  
+  .input-search{
+    width: 80%;
+  }
+  
+  .filters-container{
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+    background-color: rgb(235, 235, 235);
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: center;
+  }
+  
+  .filter-item{
+    background-color: white;
+    padding: 10px;
+    margin: 5px;
+    text-align: center;
+    min-width: 100px;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  }

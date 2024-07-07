@@ -4,9 +4,9 @@ import { MessageLine } from "../AttendanceComponents/MessageLine"
 import { CardFooter } from '../AttendanceComponents/CardFooter'
 import { CardHeader } from "../AttendanceComponents/CardHeader"
 import "./style.css"
-import { sendWhatsAppMessage, sendMediaMessage } from '../../whatsapp_functions'
+import { sendWhatsAppMessage, sendMediaMessage } from '../../utils/whatsapp_functions'
 import { ContextProvider } from "../../Contexts/GlobalContext"
-import { BASE_URL, WS_BASE_URL } from "../../constants"
+import { BASE_URL, WS_BASE_URL } from "../../data/constants"
 
 export const AttendanceComponent = ({ sectors, AttendanceInfo, OnCloseAttendance, currentAttendanceInfo}) => {
     const webSocket = useRef(null)
@@ -20,7 +20,6 @@ export const AttendanceComponent = ({ sectors, AttendanceInfo, OnCloseAttendance
           scroll.scrollTop = scroll.scrollHeight
 
         }, 100)
-        console.log(`------${scroll}´`)
     }
     const getAttendanceMessages = async () => {
       let response = await fetch(`${BASE_URL}/attendances/history/${AttendanceInfo.id}`)
@@ -83,7 +82,7 @@ export const AttendanceComponent = ({ sectors, AttendanceInfo, OnCloseAttendance
 
         
         const phone_number = `waent_${AttendanceInfo.customer_phone_number}`
-        let url = `${WS_BASE_URL}/ws/socket-server/${phone_number}`
+        let url = `${WS_BASE_URL}/ws/socket-server/chat/${phone_number}`
         const ws = new WebSocket(url)
         webSocket.current = ws
     
@@ -139,7 +138,6 @@ export const AttendanceComponent = ({ sectors, AttendanceInfo, OnCloseAttendance
               setMessages(prevState => ({...prevState, [message.id]:message_object,}))
             }
           }
-          console.log(JSON.stringify(messages))
         }
 
 
@@ -163,7 +161,7 @@ export const AttendanceComponent = ({ sectors, AttendanceInfo, OnCloseAttendance
             <CardHeader sectors={sectors} AttendanceInfo={AttendanceInfo} handleAttendanceClose={OnCloseAttendance}/>
               <div className="messages-container" id="messages" >
                   { Object.values(messages).map(message => (
-                  <MessageLine setContext={setContextMessageId} key={message.id} message={message} context={getMessageByContext(message.context)}/>
+                  <MessageLine AttendanceInfo={AttendanceInfo} setContext={setContextMessageId} key={message.id} message={message} context={getMessageByContext(message.context)}/>
                   ))}
               </div>
               <div>

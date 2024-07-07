@@ -1,13 +1,14 @@
-import {SectorItem} from "./components/SectorItem"
+import {SectorItem} from "../../components/SectorItem"
 import {useEffect, useState} from "react"
-import {BASE_URL} from "./constants"
+import {BASE_URL} from "../../data/constants"
+import "./style.css"
 
 function Sectors (){
     const [ sectors, setSectors ] = useState([])
     const [sectorNameInput, setSectorNameInput] = useState("")
 
     const getSectors = async () => {
-        const response = await fetch("http://127.0.0.1:8000/sectors/")
+        const response = await fetch(`${BASE_URL}/sectors/`)
         const data = await response.json()
         setSectors(data)
         return data

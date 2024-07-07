@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react"
-
+import { BASE_URL } from "../data/constants"
 const GlobalContext = React.createContext()
 
 export const useGlobalContext = () => {
@@ -11,7 +11,7 @@ export const ContextProvider = ({children}) => {
     const [sectors, setSectors] = useState([]) 
     
     const getSectors = async () => {
-        const response = await fetch("http://localhost:8000/sectors/")
+        const response = await fetch(`${BASE_URL}/sectors/`)
         const data = await response.json()
         setSectors(data)
       }

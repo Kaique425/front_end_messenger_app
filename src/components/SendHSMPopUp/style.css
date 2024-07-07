@@ -1,16 +1,24 @@
 .send-hsm-container{
-    padding: 5px;
+    padding: 0px;
     color: black;
     border-radius:10px;
     position: absolute;
     top: 50%;
     left: 50%;
     width: 50%;
+    min-width: 400px;
+    min-height: 200px;
     height: fit-content;
     transform: translate(-50%, -50%);
     background-color: rgba(255, 255, 255, 0.959);
-    z-index: 99;
+    z-index: 1;
     object-fit: fill;
+}
+
+.select-hsm-message{
+    text-align: center;
+    padding: 10px;
+
 }
 
 .HSM-container{
@@ -24,11 +32,26 @@
     width: fit-content;
     margin: auto;
 }
+
+.HSM-ddd-phone-input input{
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    margin: auto;
+}
+
+.HSM-ddd-phone-input input{
+    width: 20px;
+    margin: auto;
+}
+
 .HSM-phone-input label{
     margin: 5px;
 }
 
 .HSM-phone-input input{
+    display: flex;
+    flex-direction: column;
     margin: 5px;
     color: black;
     margin: auto;
@@ -39,11 +62,24 @@
     box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
 }
 .HSM-select-input{
-    margin: 10px auto;
+    margin: 15px auto;
     width: fit-content;
-    padding: 5px;
     border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease;
 }   
+
+.HSM-select-input option{
+    flex-direction: column;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+    transition: all 3s ease-in-out;
+    max-height: 0;
+    opacity: 0;
+}
 
 
 .HSM-message{
@@ -86,10 +122,73 @@
     display:flex;
     justify-content:space-around;
     margin: auto;
-    width: 30%;
+    width: 70%;
+    padding: 10px;
 }
 
 .HSM-action-buttons button{
-    padding: 5px;
-    background-color: ;
+    padding: 10px;
+    font-weight: 1000;
+    border-radius: 5px;
+    border-style: none;
+    width: fit-content;
 }
+
+.send-button{
+    background-color: #00d636;
+}
+
+.send-button:hover{
+    background-color: #00965c;
+}
+
+.close-button:hover{
+    background-color: #c50000;
+}
+
+.close-button{
+    background-color: #FF0000;
+}
+
+.phone-inputs{
+    padding: 10px;
+    margin: auto;
+    width: 70%;
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.hsm-container{
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.521);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    backdrop-filter: saturate(200%) blur(3px);
+}
+
+.hsm-container-title{
+    padding: 10px 0px;
+    border-radius:10px 10px 0px 0px;
+    width: 100%;
+    text-align: center;
+    margin: auto;
+    background-color: black;
+    color: white;
+}
+
+@media(max-width: 768px){
+    .send-hsm-container{
+        width: calc(100vw - 10px);
+        height: 95vh;
+        min-width: 200px;
+    }
+}
+

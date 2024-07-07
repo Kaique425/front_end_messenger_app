@@ -9,7 +9,7 @@
 }
 
 .contact-info {
-    padding: 5px;
+    padding: 3px;
     display: flex;
     flex-grow: 1; /* Permite que a div ocupe todo o espaço disponível */
     align-items: center;
@@ -19,29 +19,91 @@
     flex-grow: 1; /* Permite que essa div ocupe todo o espaço disponível na div pai */
 }
 
-.send-hsm-button {
+.action-buttons-container{
+    display: flex;
+    align-items: center;
+}
+
+.close-window-button{
     margin: 5px;
+}
+
+.send-hsm-button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 5px;
+    padding: 12px;
     background-color: black;
     border-radius: 10px;
     border: none;
-    height: 80%;
+}
+
+.finish-attendance-button{
+    margin: 5px;
+    padding: 15px;
+    background-color: rgb(255, 0, 0);
+    border-radius: 10px;
+    border: none;
 }
 
 .attendance-closeIcon {
     height: 25px;
-}
-.attendance-change-options{
-    display: flex;
-    justify-content: space-around;
-    padding: 10px; 
 }
 
 .read-mode-info{
     padding: 10px;
     color: red;
     font-weight: bold;
-}
+    }
 .read-mode-description{
     padding: 10px;
     font-size: 12px;
-  }
+    }
+    
+    
+.attendance-change-options-container{
+    display: flex;
+    justify-content: space-around;
+    padding: 10px; 
+}
+
+.selection-items{
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+}
+
+.selection-items select {
+    width: 100%;
+}
+
+.selection-items label {
+    padding: 2px;
+    font-size: 13px;
+}
+
+@media(max-width: 768px){
+.attendance-change-options-container{
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    overflow-x: scroll;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.send-hsm-button {
+    margin: 2px;
+    padding: 5px;
+}
+
+.finish-attendance-button{
+    margin: 5px;
+    padding: 13px;
+    background-color: rgb(255, 0, 0);
+    border-radius: 10px;
+    border: none;
+}
+}

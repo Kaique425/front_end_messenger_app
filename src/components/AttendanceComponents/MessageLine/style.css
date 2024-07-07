@@ -22,17 +22,15 @@
     justify-content: space-between;
     box-sizing: border-box;
     margin: auto;
-    background-color: #b4dd94b2;
+    background-color: #00000017;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
     border-radius: 3px;
     width: 100%;
     padding: 5px;
     max-height: 50px;
     overflow: hidden;
+    text-overflow: ellipsis;
     cursor: pointer;
-}
-
-.reply-message:hover{
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
 
 .sender-name{
@@ -49,13 +47,77 @@
     border-radius: 0px 10px 10px 0px;
 }
 
+
+.messageLine{
+    transition: ease-in-out 1000ms;
+    margin: 0px;
+    padding:0px;
+    width: 100%;
+    display:flex;
+    box-sizing: border-box;
+} 
+
+.customerMessageItem{
+    position: relative;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    max-width: 35%;
+    min-width: 20%;
+    padding: 2px;
+    margin: 5px;;
+    margin-right: 5px;
+}
+  
+.operatorMessageItem{
+    position: relative;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: #D9FDD3;
+    border-radius: 5px;
+    min-width: 18%;
+    max-width: 35%;
+    padding: 2px;
+    margin: 5px;;
+    margin-right: 5px;
+}
+  
+ 
 .message-date{
     display: flex;
     align-items: flex-end;
     flex-direction: row;
-    position:absolute;
-    right: 5px;
-    bottom:-3px;
     word-wrap: break-word;
-    font-size: 12px;
-  }
+    font-size: 10px;
+}
+.message-infos{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding: 2px 5px 0px 0px;
+    align-items: flex-end;
+} 
+ 
+.customerSide{
+    justify-content: flex-start;
+}
+
+.operatorSide{
+    justify-content:flex-end;
+}
+
+.customer-name-in-message{
+    font-size: 14px;
+    padding: 1px 0px 0px 1px;
+}
+
+.media-container-without-background{
+    display: flex;
+    flex-direction: column;
+}

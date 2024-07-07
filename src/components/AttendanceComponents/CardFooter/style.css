@@ -1,27 +1,56 @@
 .interactions-footer-container{
+    flex-grow: 1;
     border-radius: 5px;
-    display: flex;
-    width: 100%;
     background-color: #F0F2F5;
     justify-content: space-around;
-    align-items: center;
+    display: flex;
     flex-direction: row;
-  }
-  .interactions-footer-container textarea{
-    color: black;
-    background-color: transparent;
-    outline: none;
-    border-style: none;
-    min-height: 30px;
-    width:60%;
+    align-items: center;
+    width: 100%;
   }
 
   .textarea-message{
-    
+    border-radius: 8px;
+    color: black;
+    background-color: #FFFFFF;
+    outline: none;
+    border-style: none;
+    min-height: 50px;
+    resize: none;
+    flex-grow: 0;
+    box-sizing: border-box;
+    width: 65%;
+    height: 90%;
+    padding: 5px;
+  }
+
+  .expand-input-arrow{
+    cursor: ns-resize; /* Show resize cursor */
+    user-select: none; /* Prevent text selection */
+    height: 4px;
+    min-height: 4px;
+    width: 100%;
+    padding: 0px;
+    background-color: #014d01;
+    text-align: center;
+    color: black;
+
+  }
+
+  .expand-input-arrow:hover{
+    transition: all 200ms;
+    height: 10px;
+    background-color: #008000;
+  }
+
+  .interaction-resize-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
   }
 
   .file-input{
-    
+    max-width: 4096px;
   }
 
   #sender_input{
@@ -40,6 +69,7 @@
   }
 
   .footer-container{
+    flex-grow: 1;
     display: flex;
     width: 100%;
     height: 20%;
@@ -49,3 +79,16 @@
     margin: auto;
   }
 
+
+.microfone-input{
+  padding: 2px;
+  border-radius: 3px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.popup-img{
+    border-radius:5px;
+    object-fit:fill;
+    max-width: 100%;
+    max-height: 30%;
+}

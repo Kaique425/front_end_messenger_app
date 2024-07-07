@@ -1,4 +1,4 @@
-import { BASE_URL } from "./constants";
+import { BASE_URL } from "../data/constants";
 
 export const sendMediaMessage = async (file, caption, phone_number) => {
         const formData = new FormData()
