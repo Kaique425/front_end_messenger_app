@@ -4,10 +4,13 @@
     background-color: black;
     height: 100vh;
     width: fit-content;
+    max-width: 150px;
 }
 
 .side-painel ul {
-    padding: 10px;
+    font-size: 20px;
+    padding: 10px 5px;
+    margin: 5px 0px;
     list-style-type: none;
 }
 
@@ -19,15 +22,28 @@
 
 .side-painel li:hover {
     border-radius: 5px;
+    color: #00d636;
     background-color: rgb(83, 83, 83) ;
     transition: ease-in-out all 50ms;
 }
 
 .side-painel a {
     text-decoration: none;
+    color: #00d636;
+}
+
+.side-painel a:hover {
+    color: #00d636;
 }
 
 .side-painel a:visited {
     color: white;
 }
+
+
+.side-painel a:visited:hover {
+    color: #00d636;
+}
+
+
 

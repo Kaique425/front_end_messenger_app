@@ -1,0 +1,22 @@
+{ 
+    "messaging_product": "whatsapp",
+    "to": "5518996696477",
+    "type": "template",
+    "template": { 
+    "name": "iniciar_contato_com_o_cliente",
+    "language": { 
+        "code": "pt_BR" 
+    },
+    "components": [
+    {
+        "type": "header",
+        "parameters": [
+            {
+                "type": "text",
+                "text": "Kaique"
+            }
+        ]
+    }
+]
+}
+}

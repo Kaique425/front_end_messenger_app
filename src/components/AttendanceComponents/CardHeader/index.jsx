@@ -7,7 +7,7 @@ import { WhatsAppIcon } from "../Icons/WhatsAppIcon"
 import { CloseWindowIcon } from "../Icons/CloseWindowIcon"
 import { SendActiveIcon } from "../Icons/SendActiveIcon"
 
-export const CardHeader = ({AttendanceInfo, handleAttendanceClose}) => {
+export const CardHeader = ({setMessages, AttendanceInfo, handleAttendanceClose}) => {
     const sectors = useGlobalContext()
     const [attendanceWasChanged, setAttendanceWasChange ] = useState(false)
     const footerMessageInput = document.querySelector("#footer-container")

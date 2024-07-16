@@ -3,6 +3,8 @@ import { useState, useEffect } from "react"
 import { sendWhatsAppHSMMessage } from "../../utils/whatsapp_functions"
 import { BASE_URL } from "../../data/constants"
 import { insertMaskInPhone } from "../../utils/phoneMask"
+
+
 export const SendHSMPopUp = ({setShowHSMPopUp, AttendanceInfo, isCreation}) => {
     const [availableHSM, setAvailableHSM]  = useState([])
     const [phoneNumber, setPhoneNumber] = useState()
@@ -37,11 +39,28 @@ export const SendHSMPopUp = ({setShowHSMPopUp, AttendanceInfo, isCreation}) => {
     }
 
     const handleHSMSendMessage = async () => {
+        const hsm_formatted_fields = {
+            "body": updatedHSM.body,
+            "header": updatedHSM.header,
+            "footer": currentHSMSelected.footer,
+            "buttons": currentHSMSelected.buttons
+        }
         if (AttendanceInfo){
-            sendWhatsAppHSMMessage(AttendanceInfo.customer_phone_number, currentHSMSelected.name, hsmVariables, currentHSMSelected.language_code )
+            sendWhatsAppHSMMessage(
+                hsm_formatted_fields, 
+                AttendanceInfo.customer_phone_number, 
+                currentHSMSelected.name, hsmVariables, 
+                currentHSMSelected.language_code, 
+                isCreation)
         }else {
             const complete_customer_phone = phoneDDD + phoneNumber
-            sendWhatsAppHSMMessage(complete_customer_phone, currentHSMSelected.name, hsmVariables, currentHSMSelected.language_code )
+            sendWhatsAppHSMMessage(
+                hsm_formatted_fields,
+                complete_customer_phone,
+                currentHSMSelected.name,
+                hsmVariables,
+                currentHSMSelected.language_code,
+                isCreation)
         }
 
         setShowHSMPopUp(false)
@@ -114,7 +133,7 @@ export const SendHSMPopUp = ({setShowHSMPopUp, AttendanceInfo, isCreation}) => {
                         {isCreation && 
                             <div className="phone-inputs">
                                 <div className="HSM-ddd-phone-input">
-                                    <label htmlfor="ddd-input" ><strong>DDD:</strong></label>
+                                    <label htmlFor="ddd-input" ><strong>DDD:</strong></label>
                                     <input id="ddd-input" required={true} maxLength={2} onChange={ (e) => setPhoneDDD(e.target.value)} type="text" />
                                 </div>
                                 <div className="HSM-phone-input">

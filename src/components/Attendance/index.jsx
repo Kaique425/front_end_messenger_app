@@ -16,42 +16,48 @@ export const AttendanceComponent = ({ sectors, AttendanceInfo, OnCloseAttendance
 
     const setScrollToDown = () => {
         const scroll = document.querySelector("#messages")
+        scroll.style.overflowY = "hidden"
         setTimeout(() => {
           scroll.scrollTop = scroll.scrollHeight
+          }, 10)
+        setTimeout(() => {
+          scroll.style.overflowY = "auto"
+          }, 100)
+        }
 
-        }, 100)
-    }
+
     const getAttendanceMessages = async () => {
-      let response = await fetch(`${BASE_URL}/attendances/history/${AttendanceInfo.id}`)
-      let data = await response.json()
-      setMessages({...data})
+        try {
+          const response = await fetch(`${BASE_URL}/attendances/history/${AttendanceInfo.id}`);
+          const data = await response.json();
+
+      // Mapeia as mensagens pelo ID e armazena no estado
+          const messagesById = {};
+          data.forEach(message => {
+            messagesById[message.id.toString()] = message;
+          });
+
+          setMessages(messagesById);
+      } catch (error) {
+          console.error('Erro ao obter mensagens de atendimento:', error);
+      }
     }
     
+
     const sendMessage = async (file, message) => {
         let phone_number = AttendanceInfo.customer_phone_number
         if(file !== null){
-          let message_object = {}
+
           let messageData = await sendMediaMessage(file, message, phone_number)
-          message_object = {
-            "id": messageData.id,
-            "body": messageData.body,
-            "status": messageData.status,
-            "send_by_operator": messageData.send_by_operator,
-            "created_at": messageData.created_at,
-            "type": messageData.type,
-            "contacts": messageData.contacts,
-            "context": messageData.context,
-            "media_url": messageData.media_url
-          }
-  
-          setMessages(prevState => ({...prevState, [messageData.id]:message_object,}))
+         
+          setMessages(prevState => ({...prevState, [messageData.id]: messageData,}))
         }else{
-          await sendWhatsAppMessage(message, phone_number, contextMessageId)
-  
+          const messageData = await sendWhatsAppMessage(message, phone_number, contextMessageId)
+          setMessages(prevState => ({...prevState, [messageData.id]:messageData,}))
+        }
       }
-      
-     }
   
+
      const getMessageByContext = (messageId) => {
         if(messageId){
           const messagesArray = Object.values(messages)
@@ -62,9 +68,11 @@ export const AttendanceComponent = ({ sectors, AttendanceInfo, OnCloseAttendance
         }
      }
     
+
      useEffect( () => {
         setScrollToDown()
      }, [messages])
+
 
      useEffect(() => {
        if (contextMessageId) {
@@ -103,7 +111,10 @@ export const AttendanceComponent = ({ sectors, AttendanceInfo, OnCloseAttendance
               "created_at": message.created_at,
               "type": message.type,
               "contacts": message.contacts,
-              "context": message.context
+              "context": message.context,
+              "hsm_footer": message.hsm_footer,
+              "hsm_header": message.hsm_header,
+              "hsm_buttons": message.hsm_buttons,
             }
             if (message.type !== "text"){
               message_object = {...message_object, "media_url":message.media_url}
@@ -113,29 +124,24 @@ export const AttendanceComponent = ({ sectors, AttendanceInfo, OnCloseAttendance
           }
           if(data.type === "update_notification"){
             const message = JSON.parse(data.message)
-    
-            const messageTobeUpdated = messages[message.id.toString()]
-    
+            
+            const message_id = message.id.toString()
+            
+            console.log(`MENSAGEM PELO IDDD!!!!!!!! ${messages[message_id]}`)
+            const messageTobeUpdated = {
+              ...messages[message_id],
+              ...message
+            }
+            
+
             if(messageTobeUpdated){
               setMessages(prevState => ({...prevState, 
                 [message.id]:{
                 ...prevState[message.id],
-                "status": message.status
+                ...message
               }
             }))
     
-            }else{
-              let message_object = {
-                "id": message.id,
-                "body": message.body,
-                "status": message.status,
-                "send_by_operator": message.send_by_operator,
-                "created_at": message.created_at,
-                "type": message.type,
-                "media_url":message.media_url,
-                "context":message.context
-              } 
-              setMessages(prevState => ({...prevState, [message.id]:message_object,}))
             }
           }
         }
@@ -158,7 +164,7 @@ export const AttendanceComponent = ({ sectors, AttendanceInfo, OnCloseAttendance
       <ContextProvider>
         <div className="card-container" >
           <div className="card">
-            <CardHeader sectors={sectors} AttendanceInfo={AttendanceInfo} handleAttendanceClose={OnCloseAttendance}/>
+            <CardHeader setMessages={setMessages} sectors={sectors} AttendanceInfo={AttendanceInfo} handleAttendanceClose={OnCloseAttendance}/>
               <div className="messages-container" id="messages" >
                   { Object.values(messages).map(message => (
                   <MessageLine AttendanceInfo={AttendanceInfo} setContext={setContextMessageId} key={message.id} message={message} context={getMessageByContext(message.context)}/>

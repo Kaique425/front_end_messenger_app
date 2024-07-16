@@ -14,8 +14,10 @@ import {dateFormater} from "../../../utils/dateFormater.js"
 import { useEffect } from "react";
 import { StickerMessage } from "../StickerMessage";
 import { FailedCheck } from "../Icons/Failed.jsx";
+import { LoadingMessageIcon } from "../Icons/LoadingMessageIcon.jsx";
+import { HsmMessage } from "../HsmMessage/index.jsx";
 export const MessageLine = ({message, context, setContext, AttendanceInfo}) => {
-    // const formatedDate = new Date(message.created_at).toLocaleString([], {hour: 'numeric', minute:'numeric', second:"numeric"})
+    
     const formatedDate = dateFormater(message.created_at)
     useEffect(() =>{
     }, [message])
@@ -42,6 +44,8 @@ export const MessageLine = ({message, context, setContext, AttendanceInfo}) => {
                             <AudioMessage date={formatedDate} audioSource={message.media_url} />
                         ):message.type === "text"?(
                             <TextMessage date={formatedDate} textMessage={message.body} />
+                        ):message.type === "hsm"?(
+                            <HsmMessage message={message} />
                         ):(
                             <div>Não tem tipo {message.type}</div>
                         )}
@@ -55,13 +59,19 @@ export const MessageLine = ({message, context, setContext, AttendanceInfo}) => {
                                             <SendedCheck/>
                                         ): message.status === "read"?(
                                             <SeenCheck/>
-                                        ):(
+                                        ):message.status === "failed"?(
                                             <FailedCheck/>
+                                        ):(
+                                            <LoadingMessageIcon/>
                                         )
                                     }
                             </div>
                         </div>
+                        <div className="reaction-emoji" >{message.reaction}</div>
                     </div>
+                            { message.failed_reason &&
+                                <div className="message-failed-reason" >{message.failed_reason}</div>
+                            }
                 </div>:
             <div className="messageLine customerSide ">
             
@@ -117,7 +127,6 @@ export const MessageLine = ({message, context, setContext, AttendanceInfo}) => {
                                 </div>
                             </div>
                         </div>
-                    
                     }
             </div>
     )

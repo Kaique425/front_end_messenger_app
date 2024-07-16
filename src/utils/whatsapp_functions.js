@@ -2,6 +2,7 @@ import { BASE_URL } from "../data/constants";
 
 export const sendMediaMessage = async (file, caption, phone_number) => {
         const formData = new FormData()
+        
         formData.append("type", "image");
         formData.append("status", "sent");
         // formData.append("contacts", "27");
@@ -9,6 +10,7 @@ export const sendMediaMessage = async (file, caption, phone_number) => {
         formData.append("media_url", file)
         formData.append("phone_number", phone_number)
         formData.append("origin_identifier", phone_number)
+
         let response = await fetch(`${BASE_URL}/messages/midia`, {
             method: "POST",
             body: formData,
@@ -27,7 +29,6 @@ export const sendWhatsAppMessage = async (message, phone_number, message_context
 
     if (message_context_id){
       body = {...body,"context": message_context_id }
-      console.log("+_+_+_+_+_+_+_+_+_+_+" + body.context)
     }
     const response = await fetch(`${BASE_URL}/messages`,{
       method: "POST",
@@ -36,12 +37,12 @@ export const sendWhatsAppMessage = async (message, phone_number, message_context
       },
       body: JSON.stringify(body)
       })
-      console.log("------>" + JSON.stringify(body))
+
       let data = response.json()
-        return data
+      return data
     }
 
-export const sendWhatsAppHSMMessage = async (phone_number, hsm_name, components, code) => {
+export const sendWhatsAppHSMMessage = async (hsm_formatted_fields, phone_number, hsm_name, components, code, isCreation) => {
       const mountedComponents = []
       Object.keys(components).forEach(key => {
 
@@ -52,17 +53,23 @@ export const sendWhatsAppHSMMessage = async (phone_number, hsm_name, components,
             ]
           })
       })
-      console.log(`MOUNTED --> ${hsm_name} === ${code}`)
+
+      const  buttons = hsm_formatted_fields.buttons.map(button => button.body)
       const response = await fetch(`${BASE_URL}/messages/hsm`, {
                   method: "POST",
                   headers: {
                       "Content-Type":"application/json"
                   },
                   body: JSON.stringify({
+                    "body": hsm_formatted_fields.body,
+                    "hsm_footer":  hsm_formatted_fields.footer,
+                    "hsm_header": hsm_formatted_fields.header,
+                    "hsm_buttons": buttons,
                     "phone_number":phone_number,
                     "hsm_name": hsm_name,
                     "code":code,
-                    "components":mountedComponents ? mountedComponents: []
+                    "components":mountedComponents ? mountedComponents: [],
+                    "isCreation": isCreation,
                   })
               })
 
