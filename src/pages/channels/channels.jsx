@@ -2,6 +2,8 @@ import {useState, useEffect} from "react"
 import {dateFormater} from "../../utils/dateFormater"
 import { BASE_URL } from "../../data/constants"
 import "./style.css"
+
+
 const Channels = () => {
     const [ channels, setChannels] = useState([])
 

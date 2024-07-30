@@ -76,6 +76,7 @@
     background-color: rgb(235, 235, 235);
     display: flex;
     justify-content: space-around;
+    align-items:center;
   }
   .attendance-painel-main{
     width: 100%;
@@ -128,4 +129,14 @@
     min-width: 100px;
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  }
+
+
+  .message-notification-bell-div{
+    
+  }
+
+  .message-notification-bell-div:hover{
+    transform: scale(1.2);
+    transition: all ease 150ms;
   }

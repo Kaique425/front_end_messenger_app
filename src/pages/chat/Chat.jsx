@@ -4,6 +4,7 @@ import { SendHSMPopUp } from "../../components/SendHSMPopUp/index"
 import { AttendanceItem } from "../../components/AttendanceItem"
 import {BASE_URL, WS_BASE_URL} from "../../data/constants"
 import { SendActiveIcon } from '../../components/AttendanceComponents/Icons/SendActiveIcon'
+import { MessageNotificationBell } from "../../components/AttendanceComponents/Icons/MesssageNotificationBell"
 import "./style.css"
 
 function Chat() {
@@ -48,13 +49,16 @@ function Chat() {
       }
     };
 
-const updateAttendance = (attendance) => {
-  setAttendances( prevAttendance => ( {...prevAttendance, [attendance.id]:attendance}))
+const updateAttendance = (attendanceChange) => {
+  setAttendances( prevAttendance => ( {...prevAttendance, [attendanceChange.id]:attendanceChange}))
 }
 
   useEffect(() => {
     if(selectedSector.id){
-      const filtered = Object.values(Attendances)?.filter( attendance => attendance && attendance.sector === selectedSector.id)
+      const filtered = Object.values(Attendances)?.filter( 
+        attendance => attendance && attendance.sector === selectedSector.id 
+        && attendance.is_closed !== true
+      )
       setFilteredAttendances(filtered)
     }
   }, [Attendances, selectedSector]);
@@ -69,8 +73,8 @@ const updateAttendance = (attendance) => {
     ws.onmessage = (event) => {
       let data = JSON.parse(event.data)
       if (data.type === "attendance_notification"){
-        const message = JSON.parse(data.message)
-        updateAttendance(message)
+        const attendanceChange = JSON.parse(data.message)
+        updateAttendance(attendanceChange)
       }
     return () => {
       ws.close();
@@ -93,7 +97,9 @@ const updateAttendance = (attendance) => {
                       <div className="sector selected-sector" key={sector.id} ><strong>{sector.name}</strong></div>:
                       <div className="sector" onClick={() => setSelectedSector(sector)} key={sector.id} ><strong>{sector.name}</strong></div>                   
                 ))}
-
+                <div className="message-notification-bell-div" >
+                    <MessageNotificationBell/>
+                </div>
                 <button className="send-hsm-button" onClick={() => setShowHSMModal(true)}>
                     Enviar Modelo
                     <SendActiveIcon/>

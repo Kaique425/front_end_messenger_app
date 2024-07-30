@@ -31,7 +31,6 @@ export const AttendanceComponent = ({ sectors, AttendanceInfo, OnCloseAttendance
           const response = await fetch(`${BASE_URL}/attendances/history/${AttendanceInfo.id}`);
           const data = await response.json();
 
-      // Mapeia as mensagens pelo ID e armazena no estado
           const messagesById = {};
           data.forEach(message => {
             messagesById[message.id.toString()] = message;
@@ -39,7 +38,7 @@ export const AttendanceComponent = ({ sectors, AttendanceInfo, OnCloseAttendance
 
           setMessages(messagesById);
       } catch (error) {
-          console.error('Erro ao obter mensagens de atendimento:', error);
+          console.error('Erro ao obter mensagens do atendimento:', error);
       }
     }
     
@@ -127,7 +126,6 @@ export const AttendanceComponent = ({ sectors, AttendanceInfo, OnCloseAttendance
             
             const message_id = message.id.toString()
             
-            console.log(`MENSAGEM PELO IDDD!!!!!!!! ${messages[message_id]}`)
             const messageTobeUpdated = {
               ...messages[message_id],
               ...message

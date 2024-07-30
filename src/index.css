@@ -6,6 +6,8 @@ body {
 }
 
 #root {
+  --message-bg-color: #D9FDD3;
+  --button-green-color: #00DA86;
   margin: 0;
   padding: 0;
   overflow: hidden;
@@ -21,6 +23,9 @@ body {
   background-color: #ffffff;
 }
 
+ul{
+  margin: 0px;
+}
 input{
   margin: 5px;
   color: black;

@@ -126,9 +126,17 @@
     flex-direction: column;
 }
 
-.reaction-emoji{
+.reaction-emoji-container{
+    border-radius:100%;
+    background-color: var(--message-bg-color) ;
     position: absolute;
-    bottom: -10px;
+    bottom: -6px;
     left: -5px;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+}
+
+.reactio-emoji-item{
+    font-size: 16px;
+    text-align: center;
     filter: drop-shadow(1px 1px 3px #00000093);
 }

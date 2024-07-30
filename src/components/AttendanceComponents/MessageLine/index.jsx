@@ -67,7 +67,9 @@ export const MessageLine = ({message, context, setContext, AttendanceInfo}) => {
                                     }
                             </div>
                         </div>
-                        <div className="reaction-emoji" >{message.reaction}</div>
+                        <div className="reaction-emoji-container" >
+                            <div className="reactio-emoji-item">{message.reaction}</div>
+                        </div>
                     </div>
                             { message.failed_reason &&
                                 <div className="message-failed-reason" >{message.failed_reason}</div>

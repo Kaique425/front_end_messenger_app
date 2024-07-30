@@ -6,10 +6,11 @@ export const SidePainel = () => {
     return (
         <nav className="side-painel">
               <ul>
-                <li><Link to="/Chat">Atendimentos</Link></li>
-                <li><Link to="/Sector">Setores</Link></li>
+                <li><Link to="/chat">Atendimentos</Link></li>
+                <li><Link to="/sector">Setores</Link></li>
+                <li><Link to="/channels">Canais WhatsApp</Link></li>
+                <li><Link to="/templates">Templates</Link></li>
                 <li>Historico</li>
-                <li><Link to="/Channels">Canais de Entrada</Link></li>
                 <li>Regras de negócio</li>
               </ul>
         </nav>

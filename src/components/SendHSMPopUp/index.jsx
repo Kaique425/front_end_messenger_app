@@ -3,6 +3,7 @@ import { useState, useEffect } from "react"
 import { sendWhatsAppHSMMessage } from "../../utils/whatsapp_functions"
 import { BASE_URL } from "../../data/constants"
 import { insertMaskInPhone } from "../../utils/phoneMask"
+import {TemplatePreview} from "../TemplatePreview"
 
 
 export const SendHSMPopUp = ({setShowHSMPopUp, AttendanceInfo, isCreation}) => {
@@ -153,18 +154,12 @@ export const SendHSMPopUp = ({setShowHSMPopUp, AttendanceInfo, isCreation}) => {
 
                         {currentHSMSelected ? (
                             <div>
-                                <div className="HSM-container">
-                                    <div className="HSM-message">
-                                        <div className="HSM-header">{updatedHSM?.header}</div>
-                                        <div className="HSM-body">{updatedHSM?.body}</div>
-                                        <div className="HSM-footer">{currentHSMSelected?.footer}</div>
-                                        <div className="HSM-buttons">
-                                            {currentHSMSelected?.buttons?.map(buttonItem => (
-                                                <button key={buttonItem.id} >{buttonItem.body}</button>
-                                            ))}
-                                        </div>
-                                    </div>
-                                </div>
+                                <TemplatePreview templateData={{
+                                    header:updatedHSM.header, 
+                                    body: updatedHSM.body, 
+                                    footer:currentHSMSelected.footer, 
+                                    buttons: currentHSMSelected.buttons}}
+                                />
                                 <div className="HSM-variables-container">
                                     {valuesToBeReplaced.header?.length > 0 ? (
                                         <div className="varible-header-itens">
