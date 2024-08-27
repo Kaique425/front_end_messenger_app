@@ -28,7 +28,7 @@ export const AttendanceComponent = ({ sectors, AttendanceInfo, OnCloseAttendance
 
     const getAttendanceMessages = async () => {
         try {
-          const response = await fetch(`${BASE_URL}/attendances/history/${AttendanceInfo.id}`);
+          const response = await fetch(`http://localhost:8000/attendances/history/${AttendanceInfo.id}`);
           const data = await response.json();
 
           const messagesById = {};

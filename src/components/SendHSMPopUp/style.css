@@ -18,15 +18,41 @@
 .select-hsm-message{
     text-align: center;
     padding: 10px;
-
+    
+    }
+    
+.HSM-message{
+    box-sizing: border-box;
+    word-wrap: break-word;
+    text-wrap: wrap;
+    position: relative;
+    box-shadow: -1px 2px 9px 0px #000000b3;
+    padding: 10px;
+    background-color: #DCF8C6;
+    border-radius: 10px;
+    width: 100%;
+    min-width: 250px;
 }
-
 .HSM-container{
+    position: relative;
     margin: 10px;
     padding: 10px;
-    border-radius:10px;
-    box-shadow: inset 1px 1px 10px #000000b3;
-    background-color: rgb(216, 216, 216);
+    border-radius: 4px;
+    min-height: 200px;
+    background-color: #E5DDD5;
+}
+
+.HSM-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size:cover;
+    background: url(https://static.xx.fbcdn.net/rsrc.php/v3/yb/r/rmr3BrOAAd8.png);
+    z-index: 0;
+    opacity: 0.05;
 }
 .HSM-phone-input{
     width: fit-content;
@@ -82,20 +108,16 @@
 }
 
 
-.HSM-message{
-    box-shadow: -1px 2px 9px 0px #000000b3;
-    padding: 10px;
-    background-color: #DCF8C6;
-    border-radius: 10px;
-    margin: 10px;
-}
+
 
 .HSM-header{
     padding: 5px;
     font-weight: bold;
+    color: black;
 }
 .HSM-body{
     padding: 5px;
+    color: black;
 }
 .HSM-footer{
     color: gray;

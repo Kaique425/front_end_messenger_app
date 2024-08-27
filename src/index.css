@@ -1,13 +1,16 @@
-/* @import url('https://fonts.cdnfonts.com/css/helvetica-neue-50?styles=16020'); */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 body {
-  font-family: 'Helvetica Neue', sans-serif;
-  font-weight: 200;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 #root {
   --message-bg-color: #D9FDD3;
   --button-green-color: #00DA86;
+  --button-red-color: #FF0000;
+  --button-dark-red-color: #C50000;
   margin: 0;
   padding: 0;
   overflow: hidden;
@@ -15,9 +18,7 @@ body {
   margin: 0;
   padding: 0px;
   display: flex;
-  font-family: 'Helvetica Neue', sans-serif;
   line-height: 1.3;
-  font-weight: 200;
   color-scheme: light dark;
   color: rgb(99, 99, 99);
   background-color: #ffffff;

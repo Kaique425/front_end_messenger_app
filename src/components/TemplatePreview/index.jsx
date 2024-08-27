@@ -1,5 +1,9 @@
-export const TemplatePreview = ({templateData}) => {
+import { useEffect } from "react"
 
+export const TemplatePreview = ({templateData}) => {
+    useEffect( () => {
+
+    }, [templateData])
 
     return (
         <div className="HSM-container">

@@ -81,8 +81,6 @@ table td, th{
 
 }
 
-
-
 .buttons-container{
     display: flex;
     flex-direction: row;
@@ -90,22 +88,39 @@ table td, th{
     width: 90%;
 }
 
-.create-template-button{
+
+.modal-template-buttons-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 60%;
+    height: fit-content;
+}
+
+.template-action-button{
     display: flex;
     flex-direction: row;
     align-items: center;
     margin: 5px;
-    width: 15%;
+    width: 25%;
     justify-content: center;
     padding: 12px;
-    background-color: var(--button-green-color);
     border-radius: 10px;
     border: none;
+    }
+    
+.create-button{
+    background-color: var(--button-green-color);
 }
+
+.cancel-button{
+    background-color: var(--button-red-color);
+}
+
 
 .template-creation-dialog{
     background-color: #EAEBF1;
-    width: 80%;
+    width: 90%;
     height: 90vh;
     border-radius: 10px;
 }
@@ -116,8 +131,11 @@ table td, th{
 }
 
 .body-textarea{
-    min-width: 500px;
-    min-height: 80px ;
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 80px;
+    max-height: 200px;
+    resize: vertical;
     background-color: white;
     color: black;
     margin: auto;
@@ -128,8 +146,8 @@ table td, th{
     box-shadow: rgb(133 133 133) -1px 1px 6px 0px inset, rgba(255, 255, 255, 0.5) -15px -9px 6px 1px inset;
 }
 .nav-template-types{
-    margin: auto;
-    width: 70%;
+    margin:0px;
+    width: 65%;
     color: black;
 }
 
@@ -194,16 +212,26 @@ table td, th{
 
 .template-div{
     height: fit-content;
-    margin: 8px;
-    padding: 8px;
-    border-radius: 10px;
+    margin: 12px;
+    padding: 4px;
+    border-radius: 8px;
     background-color: white;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
+}
+
+.template-main-inputs-div {
+    height: fit-content;
+    margin: 12px;
+    padding: 4px;
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;  
 }
     
 .template-div-title{
     font-size: 15px;
     color: black;
-    margin: 5px;
+    margin: 2px;
 }
 
 .template-optional-desc{
@@ -217,7 +245,7 @@ table td, th{
 }
 
 .template-creation-preview{
-    width: 30%;
+    width: 35%;
 }
 
 .character-limit-span{
@@ -246,11 +274,27 @@ table td, th{
 
 }
 
-.template-add-varible-button{
-    border: none;
+.template-add-variable-button{
     background-color: white;
     color: black;
     margin: 8px;
     font-weight: 600;
     font-size: 0.9rem;
+    padding: 10px;
+    border: none;
+    user-select: none;
+}
+.template-add-variable-button:hover{
+    cursor: pointer;
+    background-color: rgba(211, 211, 211, 0.377);
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+    border-radius: 3px;
+}
+.template-field-input{
+    display: flex;
+    width: 100%;
+}
+
+.template-field-input input{
+    width: 100%;
 }
