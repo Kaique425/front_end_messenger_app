@@ -1,68 +1,75 @@
-.attendance-item{
-    z-index: 0;
-    position: relative;
-    height: fit-content;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    background-color: white;
-    border-radius: 10px;
-    padding: 5px;
-    margin: 10px;
-    box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
-    width: fit-content;
-    min-width: 20%;
-}
-.attendance-item:hover{
-    transform: scale(1.05);
+.attendance-item {
+  position: relative;
+  height: 120px;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: white;
+  border-radius: 10px;
+  padding: 5px;
+  box-shadow:
+    rgba(0, 0, 0, 0.09) 0px 2px 1px,
+    rgba(0, 0, 0, 0.09) 0px 4px 2px,
+    rgba(0, 0, 0, 0.09) 0px 8px 4px,
+    rgba(0, 0, 0, 0.09) 0px 16px 8px,
+    rgba(0, 0, 0, 0.09) 0px 32px 16px;
+  box-sizing: border-box;
 }
 
-.whatsapp-svg{
-    margin: 5px;
-    fill: green;
-}
-.attendance-infos{
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
+.attendance-item:hover {
+  transform: scale(1.05);
 }
 
-.attendance-metrics-container{
-    display: flex;
+.whatsapp-svg {
+  margin: 5px;
+  fill: green;
+}
+.attendance-infos {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
-.metric-item{
-    margin: 5px;
+.attendance-metrics-container {
+  display: flex;
 }
 
-.attendance-state{
-    width: 100%;
-    background-color: red;
-    min-height: 5px;
-    box-sizing: border-box;
-    padding: 0px;
-    border-radius: 3px;
-
+.metric-item {
+  margin: 5px;
 }
 
-.unread-messages{
-    background-color: red;
+.attendance-state {
+  position: relative;
+  bottom: -25px;
+  width: 100%;
+  height: 5px;
+  background-color: red;
+  min-height: 5px;
+  box-sizing: border-box;
+  padding: 0px;
+  border-radius: 3px;
 }
 
-.read-messages{
-    background-color: #008000;
+.unread-messages {
+  background-color: red;
 }
 
-.unread-message-quantity{
-    position:absolute;
-    top: -5px;
-    right: 20px;
-    background-color: red;
-    width: 20px;
-    height: 20px;
-    text-align: center;
-    color: white;
-    border-radius: 100%;  
-    line-height: 20px;
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+.read-messages {
+  background-color: #008000;
+}
+
+.unread-message-quantity {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: red;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  color: white;
+  border-radius: 100%;
+  line-height: 20px;
+  box-shadow:
+    rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
+    rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }

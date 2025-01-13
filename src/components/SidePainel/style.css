@@ -1,49 +1,93 @@
-.side-painel{
-    position: fixed;
-    font-size: 15px;
-    background-color: black;
-    height: 100vh;
-    width: fit-content;
-    max-width: 150px;
+.side-painel {
+  position: fixed;
+  font-size: 15px;
+  background-color: black;
+  height: 100vh;
+  width: fit-content;
+  max-width: 200px;
 }
 
 .side-painel ul {
-    font-size: 20px;
-    padding: 10px 5px;
-    margin: 5px 0px;
-    list-style-type: none;
+  padding: 15px 0px;
+  margin: 10px 5px;
+  list-style-type: none;
 }
 
 .side-painel li {
-    color: white;
-    padding: 5px;
-    text-decoration: none;
+  display: flex;
+  color: white;
+  padding: 10px;
+  margin-top: 10px;
+  text-decoration: none;
+  align-items: flex-end;
+  justify-content: flex-start;
+  align-content: center;
+  flex-direction: row;
+}
+
+.side-painel li a {
+  display: flex;
+  align-items: center;
 }
 
 .side-painel li:hover {
-    border-radius: 5px;
-    color: #00d636;
-    background-color: rgb(83, 83, 83) ;
-    transition: ease-in-out all 50ms;
+  border-radius: 5px;
+  color: #00d636;
+  background-color: #312f2f;
+  transition: ease-in-out all 100ms;
+}
+
+.side-painel li:hover svg {
+  color: #00d636;
+  fill: #00d636;
+  transition: ease-in-out all 100ms;
+}
+
+.side-painel li:hover a {
+  color: #00d636;
+
+  transition: ease-in-out all 50ms;
 }
 
 .side-painel a {
-    text-decoration: none;
-    color: #00d636;
-}
-
-.side-painel a:hover {
-    color: #00d636;
+  text-decoration: none;
+  font-size: 15px;
+  color: #00d636;
 }
 
 .side-painel a:visited {
-    color: white;
+  color: white;
 }
-
 
 .side-painel a:visited:hover {
-    color: #00d636;
+  color: #00d636;
 }
 
+.painel-icon {
+  margin-right: 10px;
+  height: 25px;
+  width: 25px;
+  fill: white;
+}
 
+.painel-chat-icon {
+  fill: white;
+  margin-right: 10px;
+}
 
+.painel-whatsapp-icon {
+  margin-right: 10px;
+  fill: white;
+  height: 25px;
+  width: 25px;
+}
+
+.painel-history-icon {
+  margin-right: 10px;
+  fill: white;
+  height: 25px;
+  width: 25px;
+}
+
+.painel-template-icon {
+}

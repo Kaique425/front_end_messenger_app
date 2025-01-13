@@ -1,300 +1,302 @@
-.hsms-container{
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    background-color: white;
-    margin-left: 150px;
-    flex-wrap: nowrap;
-    flex-direction: column;
-    align-items:center;
-    overflow-y: auto;
+.hsms-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  background-color: white;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
 }
 
-.template-title-page{
-    margin: 40px 0px 40px 0px;
+.template-title-page {
+  margin: 40px 0px 40px 0px;
 }
 
-.hsm-list-item{
-    margin-top:5px;
+.hsm-list-item {
+  margin-top: 5px;
 }
 
-.hsm-field-item{
-    margin: 3px;
-    text-align: start;
+.hsm-field-item {
+  margin: 3px;
+  text-align: start;
 }
 
-.hsm-table{
-    margin: 50px 0px 20px 0px;
-    border-collapse:collapse;
-    width: 90%;
-    background-color:white;
-    color: black;
-    border-radius: 10px;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+.hsm-table {
+  margin: 50px 0px 20px 0px;
+  border-collapse: collapse;
+  width: 90%;
+  background-color: white;
+  color: black;
+  border-radius: 10px;
+  box-shadow:
+    rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
-.table-caption{
-    font-size: 20px;
-    margin: 10px;
-    text-align: start;
+.table-caption {
+  font-size: 20px;
+  margin: 10px;
+  text-align: start;
 }
 
-.hsm-table-header{
-    text-align: left;
+.hsm-table-header {
+  text-align: left;
 }
 
-.category-item{
-    text-transform: capitalize;
+.category-item {
+  text-transform: capitalize;
 }
 
-.status{
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-    font-weight: 600;
-    text-align: center;
-    text-transform: capitalize;
-    border-radius: 3px;
-    padding: 0px 3px 0px 3px;
+.status {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  font-weight: 600;
+  text-align: center;
+  text-transform: capitalize;
+  border-radius: 3px;
+  padding: 0px 3px 0px 3px;
 }
-.pending-status-div{
-    background-color: #3575fd;
-    color: white;
-}
-
-.approved-status-div{
-    background-color: #00da8634 ;
-    color: var(--button-green-color);
+.pending-status-div {
+  background-color: #3575fd;
+  color: white;
 }
 
-.rejected-status-div{
-    background-color: #ff0000;
-    color: white;
+.approved-status-div {
+  background-color: #00da8634;
+  color: var(--button-green-color);
 }
 
-.disabled-status-div{
-    background-color: #72727280;
-    color: white;
+.rejected-status-div {
+  background-color: #ff0000;
+  color: white;
 }
 
-
-table td, th{
-    padding: 1rem;
-
+.disabled-status-div {
+  background-color: #72727280;
+  color: white;
 }
 
-.buttons-container{
-    display: flex;
-    flex-direction: row;
-    justify-content: start;
-    width: 90%;
+table td,
+th {
+  padding: 1rem;
 }
 
-
-.modal-template-buttons-container{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    width: 60%;
-    height: fit-content;
+.buttons-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  width: 90%;
 }
 
-.template-action-button{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin: 5px;
-    width: 25%;
-    justify-content: center;
-    padding: 12px;
-    border-radius: 10px;
-    border: none;
-    }
-    
-.create-button{
-    background-color: var(--button-green-color);
+.modal-template-buttons-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+  height: fit-content;
 }
 
-.cancel-button{
-    background-color: var(--button-red-color);
+.template-action-button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 5px;
+  width: 100%;
+  justify-content: center;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
 }
 
-
-.template-creation-dialog{
-    background-color: #EAEBF1;
-    width: 90%;
-    height: 90vh;
-    border-radius: 10px;
+.create-button {
+  background-color: var(--button-green-color);
 }
 
-::backdrop{
-    background-color: rgba(0, 0, 0, 0.623);
-    
+.cancel-button {
+  background-color: var(--button-red-color);
 }
 
-.body-textarea{
-    box-sizing: border-box;
-    width: 100%;
-    min-height: 80px;
-    max-height: 200px;
-    resize: vertical;
-    background-color: white;
-    color: black;
-    margin: auto;
-    padding: 5px;
-    border-radius: 5px;
-    background-color: white;
-    border: none;
-    box-shadow: rgb(133 133 133) -1px 1px 6px 0px inset, rgba(255, 255, 255, 0.5) -15px -9px 6px 1px inset;
-}
-.nav-template-types{
-    margin:0px;
-    width: 65%;
-    color: black;
+.template-creation-dialog {
+  background-color: #eaebf1;
+  width: 90%;
+  height: 90vh;
+  border-radius: 10px;
 }
 
-.nav-template-types ul{
-    margin-bottom: 20px;
-    padding: 0px;
-    display: flex;
-    flex-direction: row;
-    list-style: none;
-    justify-content: space-around;
+::backdrop {
+  background-color: rgba(0, 0, 0, 0.623);
 }
 
-.nav-type-item{
-    box-sizing: border-box;
-    font-weight: 600;
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
-    padding: 5px;
-    border-radius: 3px;
-    background-color: white;
-    width: 30%;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-end;
-    justify-content: space-around;
+.body-textarea {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 80px;
+  max-height: 200px;
+  resize: vertical;
+  background-color: white;
+  color: black;
+  margin: auto;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: white;
+  border: none;
+  box-shadow:
+    rgb(133 133 133) -1px 1px 6px 0px inset,
+    rgba(255, 255, 255, 0.5) -15px -9px 6px 1px inset;
+}
+.nav-template-types {
+  margin: 0px;
+  width: 65%;
+  color: black;
 }
 
-.nav-type-item:hover{
-    background-color: rgba(211, 211, 211, 0.815);
-    transition: all ease-in-out 150ms;
-    cursor: pointer;
+.nav-template-types ul {
+  margin-bottom: 20px;
+  padding: 0px;
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  justify-content: space-around;
 }
 
-.type-item-content{
-    display: flex;
-    align-items: flex-end;
-    margin-bottom: 2px;
+.nav-type-item {
+  box-sizing: border-box;
+  font-weight: 600;
+  box-shadow:
+    rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
+    rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  padding: 5px;
+  border-radius: 3px;
+  background-color: white;
+  width: 30%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-around;
 }
 
-.template-creation-container{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: flex-start;
-
+.nav-type-item:hover {
+  background-color: rgba(211, 211, 211, 0.815);
+  transition: all ease-in-out 150ms;
+  cursor: pointer;
 }
 
-.template-creation-inputs{
-    width: 70%;
-    height: fit-content;
+.type-item-content {
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 2px;
+}
+
+.template-creation-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.template-creation-inputs {
+  width: 70%;
+  height: fit-content;
 }
 
 .template-creation-inputs input {
-    width: 50%;
+  width: 50%;
 }
 
 .template-creation-inputs h3 {
-    color: black;
-    font-size: 20px;
-    margin: 10px;
+  color: black;
+  font-size: 20px;
+  margin: 10px;
 }
 
-.template-div{
-    height: fit-content;
-    margin: 12px;
-    padding: 4px;
-    border-radius: 8px;
-    background-color: white;
-    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
+.template-div {
+  height: fit-content;
+  margin: 12px;
+  padding: 4px;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow:
+    rgba(17, 17, 26, 0.1) 0px 4px 16px,
+    rgba(17, 17, 26, 0.05) 0px 8px 32px;
 }
 
 .template-main-inputs-div {
-    height: fit-content;
-    margin: 12px;
-    padding: 4px;
-    border-radius: 8px;
-    background-color: white;
-    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;  
-}
-    
-.template-div-title{
-    font-size: 15px;
-    color: black;
-    margin: 2px;
+  height: fit-content;
+  margin: 12px;
+  padding: 4px;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow:
+    rgba(17, 17, 26, 0.1) 0px 4px 16px,
+    rgba(17, 17, 26, 0.05) 0px 8px 32px;
 }
 
-.template-optional-desc{
-    color: gray;
-    margin: 5px;
+.template-div-title {
+  font-size: 15px;
+  color: black;
+  margin: 2px;
 }
 
-.template-content-desc{
-    color: gray;
-    margin-left: 20px;
+.template-optional-desc {
+  color: gray;
+  margin: 5px;
 }
 
-.template-creation-preview{
-    width: 35%;
+.template-content-desc {
+  color: gray;
+  margin-left: 20px;
 }
 
-.character-limit-span{
-    margin: 5px;
-    color: gray;
-    font-size: 0.8rem;
+.template-creation-preview {
+  width: 35%;
 }
 
-.template-name-div{
-
+.character-limit-span {
+  margin: 5px;
+  color: gray;
+  font-size: 0.8rem;
 }
 
-.template-header-div{
-
+.template-name-div {
 }
 
-.template-body-div{
-
+.template-header-div {
 }
 
-.template-footer-div{
-
+.template-body-div {
 }
 
-.template-button-div{
-
+.template-footer-div {
 }
 
-.template-add-variable-button{
-    background-color: white;
-    color: black;
-    margin: 8px;
-    font-weight: 600;
-    font-size: 0.9rem;
-    padding: 10px;
-    border: none;
-    user-select: none;
-}
-.template-add-variable-button:hover{
-    cursor: pointer;
-    background-color: rgba(211, 211, 211, 0.377);
-    box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
-    border-radius: 3px;
-}
-.template-field-input{
-    display: flex;
-    width: 100%;
+.template-button-div {
 }
 
-.template-field-input input{
-    width: 100%;
+.template-add-variable-button {
+  background-color: white;
+  color: black;
+  margin: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 10px;
+  border: none;
+  user-select: none;
+}
+.template-add-variable-button:hover {
+  cursor: pointer;
+  background-color: rgba(211, 211, 211, 0.377);
+  box-shadow:
+    rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
+    rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+  border-radius: 3px;
+}
+.template-field-input {
+  display: flex;
+  width: 100%;
+}
+
+.template-field-input input {
+  width: 100%;
 }

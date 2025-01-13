@@ -1,8 +1,8 @@
 import "./style.css"
 import { useRef, useState, useEffect } from "react"
 import { ImagePopUp } from "../ImagePopUp"
-import { MicrofoneIcon } from "../Icons/MicrofoneIcon"
-import { ImageSenderIcon } from "../Icons/ImageSenderIcon"
+import { MicrofoneIcon } from "../../../Icons/MicrofoneIcon"
+import { ImageSenderIcon } from "../../../Icons/ImageSenderIcon"
 export const CardFooter = ({setContextMessageId, sendMessage }) => {
     const [showPopUpImage, setShowPopUpImage] = useState(false)
     const [height, setHeight] = useState(100)

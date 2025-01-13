@@ -1,22 +1,35 @@
-export const cleanFooter = (text) => {
+export function cleanTitle(text){
 
-    return text.replace(/[^A-Za-z\s]/g, '');
+    let cleanedTitle = text.replace(/[\s\-\/]/g, '_');
+    
+    cleanedTitle = cleanedTitle.replace(/[áàãâä]/g, '');
+    cleanedTitle = cleanedTitle.replace(/[éèêë]/g, '');
+    cleanedTitle = cleanedTitle.replace(/[íìîï]/g, '');
+    cleanedTitle = cleanedTitle.replace(/[óòôõö]/g, '');
+    cleanedTitle = cleanedTitle.replace(/[úùûü]/g, '');
+    cleanedTitle = cleanedTitle.replace(/[ç]/g, '');
 
+    cleanedTitle = cleanedTitle.replace(/_+/g, "_")
+
+    return cleanedTitle
 }
+
 
 export function cleanHeader(text) {
     
-    let cleanedText = text.replace(/[^A-Za-z0-9\s{}]/g, '');
+    let cleanedText = text.replace(/[^A-Za-zÀ-ÖØ-öø-ÿ0-9\s{}?]/g, '');
          
-    const hasPattern = /{{1}}/.test(cleanedText);
     
-    // cleanedText = cleanedText.replace(/(\{\{\d+\}\})/g, (match) => {
-    //     return match === '{{1}}' ? '{{1}}' : '';
-    // });
+    cleanedText = cleanedText.replace(/\{\{\d+\}\}/g, (match) => {
+        return match === '{{1}}' ? match : '';
+    });
 
-    // if (!hasPattern) {
-    //     cleanedText += '{{1}}';
-    // }
+    
+    const patternFirstOccurrenceIndex = cleanedText.indexOf('{{1}}');
+    if (patternFirstOccurrenceIndex !== -1) {
+        
+        cleanedText = cleanedText.replace(/{{1}}/g, (match, offset) => (offset === patternFirstOccurrenceIndex ? match : ''));
+    }
 
     return cleanedText;
 }
@@ -24,6 +37,13 @@ export function cleanHeader(text) {
 
 export const cleanBody = () => {
     
+    return text.replace(/[^A-Za-z\s]/g, '');
+    
+}
+
+
+export const cleanFooter = (text) => {
+
     return text.replace(/[^A-Za-z\s]/g, '');
 
 }

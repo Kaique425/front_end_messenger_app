@@ -3,9 +3,9 @@ import { useState } from "react"
 import { SendHSMPopUp } from "../../SendHSMPopUp"
 import { useGlobalContext } from "../../../Contexts/GlobalContext"
 import { BASE_URL } from "../../../data/constants"
-import { WhatsAppIcon } from "../Icons/WhatsAppIcon"
-import { CloseWindowIcon } from "../Icons/CloseWindowIcon"
-import { SendActiveIcon } from "../Icons/SendActiveIcon"
+import { WhatsAppIcon } from "../../../Icons/WhatsAppIcon"
+import { CloseWindowIcon } from "../../../Icons/CloseWindowIcon"
+import { SendActiveIcon } from "../../../Icons/SendActiveIcon"
 
 export const CardHeader = ({setMessages, AttendanceInfo, handleAttendanceClose}) => {
     const sectors = useGlobalContext()

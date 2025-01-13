@@ -1,8 +1,8 @@
 import React from "react"
 
-import {SendedCheck } from "../Icons/Sended";
-import { SeenCheck } from "../Icons/Seen"
-import { SentCheck } from "../Icons/Sent"
+import {SendedCheck } from "../../../Icons/Sended.jsx";
+import { SeenCheck } from "../../../Icons/Seen.jsx"
+import { SentCheck } from "../../../Icons/Sent.jsx"
 import "./style.css"
 import {AudioMessage} from "../AudioMessage/Index"
 import { ImageMessage } from "../ImageMessage/index.jsx"
@@ -13,8 +13,8 @@ import {dateFormater} from "../../../utils/dateFormater.js"
 
 import { useEffect } from "react";
 import { StickerMessage } from "../StickerMessage";
-import { FailedCheck } from "../Icons/Failed.jsx";
-import { LoadingMessageIcon } from "../Icons/LoadingMessageIcon.jsx";
+import { FailedCheck } from "../../../Icons/Failed.jsx";
+import { LoadingMessageIcon } from "../../../Icons/LoadingMessageIcon.jsx";
 import { HsmMessage } from "../HsmMessage/index.jsx";
 export const MessageLine = ({message, context, setContext, AttendanceInfo}) => {
     

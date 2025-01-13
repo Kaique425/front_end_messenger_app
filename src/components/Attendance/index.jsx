@@ -15,15 +15,13 @@ export const AttendanceComponent = ({ sectors, AttendanceInfo, OnCloseAttendance
     const [filteredMessageByContext, setFilteredMessageByContext] = useState(null)
 
     const setScrollToDown = () => {
-        const scroll = document.querySelector("#messages")
-        scroll.style.overflowY = "hidden"
-        setTimeout(() => {
-          scroll.scrollTop = scroll.scrollHeight
-          }, 10)
-        setTimeout(() => {
-          scroll.style.overflowY = "auto"
-          }, 100)
-        }
+        const scroll = document.querySelector("#messages");
+  
+      scroll.scrollTo({
+        top: scroll.scrollHeight,
+        behavior: "smooth"
+      });
+    }
 
 
     const getAttendanceMessages = async () => {
